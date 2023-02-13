@@ -25,4 +25,24 @@ class Resume extends CI_Controller {
 		$this->load->view('website/main');
 		$this->load->view('include/footer');
 	}
+
+	public function login(){
+		$this->load->view('website/login');
+	}
+
+	public function register(){
+		$this->load->view('website/register');
+	}
+
+	public function forgot(){
+		$this->load->view('website/forgot');
+	}
+
+	public function create_resume(){
+		$this->load->view('website/forgot');
+	}
+
+	public function create_statement_of_purpose(){
+		$this->load->view('website/forgot');
+	}
 }

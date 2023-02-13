@@ -72,7 +72,7 @@
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
       <div class="d-flex justify-content-end">
-        <a class="btn-getstarted ml-2" href="<?= base_url('login') ?>">Login</a>
+        <a class="btn-getstarted ml-2" href="<?= base_url('resume/login') ?>">Login</a>
         <!-- <a class="btn-getstarted ml-2" href="<?= base_url('register') ?>">Sign Up</a> -->
       </div>
 
@@ -85,7 +85,7 @@
       <h2>Welcome to <span>Resume<span>Genie</span></span></h2>
       <p>Build a Career-Winning Resume in Minutes.</p>
       <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Sign Up</a>
+        <a href="<?= base_url('resume/register') ?>" class="btn-get-started scrollto">Sign Up</a>
         <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>
     </div>
