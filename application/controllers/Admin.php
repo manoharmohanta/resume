@@ -20,8 +20,10 @@ class Admin extends CI_Controller {
 	 * 
 	 * Here the website code with login
 	 */
-	public function index()
-	{
+	public function index(){
+		$this->load->view('welcome_message');
+	}
+	public function index(){
 		$this->load->view('welcome_message');
 	}
 }
