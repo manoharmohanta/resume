@@ -1,96 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>HeroBiz Bootstrap Template - Home 1</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Variables CSS Files. Uncomment your preferred color scheme -->
-  <link href="assets/css/variables.css" rel="stylesheet">
-  <!-- <link href="assets/css/variables-blue.css" rel="stylesheet"> -->
-  <!-- <link href="assets/css/variables-green.css" rel="stylesheet"> -->
-  <!-- <link href="assets/css/variables-orange.css" rel="stylesheet"> -->
-  <!-- <link href="assets/css/variables-purple.css" rel="stylesheet"> -->
-  <!-- <link href="assets/css/variables-red.css" rel="stylesheet"> -->
-  <!-- <link href="assets/css/variables-pink.css" rel="stylesheet"> -->
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: HeroBiz - v2.4.0
-  * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top" data-scrollto-offset="0">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Resume<span>Genie</span></h1>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-
-          <li class="dropdown1"><a href="index.html"><span>Home</span> </i></a></li>
-
-          <li><a class="nav-link scrollto" href="create-free-resume.html">Create Free Resume / CV</a></li>
-          <li><a class="nav-link scrollto" href="index.html#services">Generate Statement of Purpose</a></li>
-          <li><a class="nav-link scrollto" href="index.html#pricing">Pricing</a></li>
-          <li><a class="nav-link scrollto" href="index.html#recent-blog-posts">Blog</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about">About Us</a></li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle d-none"></i>
-      </nav><!-- .navbar -->
-      <div class="d-flex justify-content-end">
-        <a class="btn-getstarted ml-2" href="index.html#about">Login</a>
-        <a class="btn-getstarted ml-2" href="index.html#about">Sign Up</a>
-      </div>
-
-    </div>
-  </header><!-- End Header -->
-
-  <section id="hero-animated" class="hero-animated d-flex align-items-center">
-    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
-      <img src="assets/img/hero-carousel/hero-carousel-1.svg" class="img-fluid animated">
-      <h2>Welcome to <span>Resume<span>Genie</span></span></h2>
-      <p>Build a Career-Winning Resume in Minutes.</p>
-      <div class="d-flex">
-        <a href="#about" class="btn-get-started scrollto">Login</a>
-        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
-      </div>
-    </div>
-  </section>
-
   <main id="main">
 
     <!-- ======= About Section ======= -->
@@ -99,7 +6,7 @@
 
         <div class="section-header">
           <h2>About Us</h2>
-          <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
+          <p>At ResumeGenie, we understand the importance of having a strong, well-written resume in today's competitive job market. That's why we've created a cutting-edge Resume Generator tool that makes it easy for anyone to create a professional and eye-catching resume in just a few simple steps.</p>
         </div>
 
         <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
@@ -111,7 +18,7 @@
           </div>
 
           <div class="col-lg-7">
-            <h3 class="pt-0 pt-lg-5">Neque officiis dolore maiores et exercitationem quae est seda lidera pat claero</h3>
+            <h3 class="pt-0 pt-lg-5">Thank you for choosing ResumeGenie for your resume needs</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -131,13 +38,13 @@
                   <i class="bi bi-check2"></i>
                   <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
                 </div>
-                <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi dolorum non eveniet magni quaerat nemo et.</p>
+                <p>Our team of experienced professionals has a passion for empowering job seekers with the tools and resources they need to succeed. We believe that everyone should have access to a quality resume, regardless of their writing skills or design experience.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
                   <h4>Incidunt non veritatis illum ea ut nisi</h4>
                 </div>
-                <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at. Dolorem quo tempora. Quia et perferendis.</p>
+                <p>We are committed to delivering the best possible user experience, and our Resume Generator tool is constantly being updated and improved based on feedback from our users. If you have any questions or comments, we'd love to hear from you.</p>
 
                 <div class="d-flex align-items-center mt-4">
                   <i class="bi bi-check2"></i>
@@ -502,7 +409,7 @@
             <div class="content px-xl-5">
               <h3>Frequently Asked <strong>Questions</strong></h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+              Resume Generator websites have a support or contact page where you can get help or ask questions if you need assistance using the tool. This support may include email, phone, or live chat options, depending on the website.
               </p>
             </div>
 
@@ -512,12 +419,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Non consectetur a erat nam at lectus urna duis?
+                    What is a Resume Generator?
                   </button>
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                  A Resume Generator is an online tool that helps you create a professional and visually appealing resume in just a few steps. The tool collects your personal information, work experience, education, skills, and design preferences to generate a personalized resume that you can download and use in your job search.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -526,12 +433,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                    Is it free to use the Resume Generator?
                   </button>
                 </h3>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                  The availability of a free version of the Resume Generator depends on the specific website offering the tool. Some websites may offer a limited version of the tool for free, while others may require a subscription or one-time payment to access all of its features.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -540,12 +447,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                    Can I save and update my resume later?
                   </button>
                 </h3>
                 <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                    Yes, most Resume Generator tools allow you to save your resume and update it later as needed. This is a convenient feature for those who may need to make changes or add new information to their resume over time.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -554,13 +461,13 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
+                    Are there different design templates available?
                   </button>
                 </h3>
                 <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                    Yes, most Resume Generator tools offer a variety of design templates for you to choose from. This allows you to find a template that best fits your personal style and the type of job you're applying for.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -569,12 +476,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                    Can I download my resume in multiple formats?
                   </button>
                 </h3>
                 <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                  Yes, most Resume Generator tools allow you to download your resume in various formats, such as PDF, Word, and HTML. This gives you the flexibility to use your resume in a variety of settings, including online job applications, email attachments, and printing.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -730,106 +637,5 @@
       </div>
     </section><!-- End Contact Section -->
 
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="footer-content">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>HeroBiz</h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-legal text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
-
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div class="copyright">
-            &copy; Copyright <strong><span>HeroBiz</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
-
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-
-      </div>
-    </div>
-
-  </footer><!-- End Footer -->
-
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+  </main>
+  <!-- End #main -->

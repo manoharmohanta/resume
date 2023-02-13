@@ -1,67 +1,69 @@
 ###################
-What is CodeIgniter
+SILO structure for a website with the keyword "Resume Generator"
 ###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+This structure provides clear categories and sections for the website, 
+making it easy for both users and search engines to navigate and understand 
+the content. By having a well-organized structure, the website will be more 
+user-friendly and have a better chance of ranking higher in search engine 
+results pages (SERPs).
 
 *******************
-Release Information
+I. Home page
 *******************
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+- `Introduction to the Resume Generator tool`
+- `Key features and benefits of using the tool`
+- `Call to action (CTA) to start using the tool`
 
 **************************
-Changelog and New Features
+II. Resume Generator
 **************************
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+A. Step 1: Personal Information
+- `Collecting basic personal information such as name, email, and phone number`
+B. Step 2: Work Experience
+- `Inputting work experience, including company name, job title, and dates of employment`
+C. Step 3: Education
+- `Inputting education information, including degree type, major, and date of graduation`
+D. Step 4: Skills
+- `Inputting and categorizing skills, such as technical skills, communication skills, and leadership skills`
+E. Step 5: Design
+- `Selecting a design template for the resume`
+F. Step 6: Download
+- `Downloading the final resume in various formats (PDF, Word, etc.).`
 
 *******************
-Server Requirements
+III. Templates
 *******************
 
-PHP version 5.6 or newer is recommended.
-
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+- `Overview of all available resume design templates`
+- `Preview of each template with a description`
+- `Option to select a template before starting the Resume Generator process`
 
 ************
-Installation
+IV. Examples
 ************
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+- `Showcase of real-life resumes generated using the tool`
+- `Explanation of how each resume showcases the tool's features and benefits`
+- `Option to download and use the example resumes as a starting point`
 
-*******
-License
-*******
+***********
+V. About Us
+***********
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+- `Information about the company behind the Resume Generator tool`
+- `Background on the team and their mission`
+- `Contact information for support or further questions`
 
 *********
-Resources
+VI. Blog
 *********
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
+- `Up-to-date information and tips on resume writing and job searching`
+- `In-depth articles on how to use the Resume Generator tool to its full potential`
+- `Opportunity for users to provide feedback and suggest topics for future blog posts`
 
 ***************
 Acknowledgement

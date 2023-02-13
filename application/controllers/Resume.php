@@ -20,8 +20,9 @@ class Resume extends CI_Controller {
 	 * 
 	 * Here the website code without login
 	 */
-	public function index()
-	{
-		$this->load->view('welcome_message');
+	public function index(){
+		$this->load->view('include/header');
+		$this->load->view('website/main');
+		$this->load->view('include/footer');
 	}
 }
