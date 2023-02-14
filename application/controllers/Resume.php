@@ -39,7 +39,9 @@ class Resume extends CI_Controller {
 	}
 
 	public function create_resume(){
-		$this->load->view('website/forgot');
+		$this->load->view('include/header');
+		$this->load->view('website/create-free-resume');
+		$this->load->view('include/footer');
 	}
 
 	public function create_statement_of_purpose(){

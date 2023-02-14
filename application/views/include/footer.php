@@ -86,15 +86,17 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/aos/aos.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/glightbox/js/glightbox.min.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/isotope-layout/isotope.pkgd.min.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/swiper/swiper-bundle.min.js') ?>"></script>
+  <script src="<?= base_url('assets/vendor/php-email-form/validate.js') ?>"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="<?= base_url('assets/js/main.js') ?>"></script>
+  <script src="<?= base_url('assets/js/pagination.js') ?>"></script>
 
 </body>
 

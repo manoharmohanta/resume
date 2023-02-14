@@ -36,6 +36,7 @@
 
   <!-- Template Main CSS File -->
   <link href="<?= base_url() ?>assets/css/main.css" rel="stylesheet">
+  <link href="<?= base_url() ?>assets/css/pagination.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: ResumeGenie - v2.4.0
@@ -60,9 +61,9 @@
       <nav id="navbar" class="navbar">
         <ul>
 
-          <li class="dropdown1"><a href="index.html"><span>Home</span> </i></a></li>
+          <li class="dropdown1"><a href="<?= base_url() ?>"><span>Home</span> </i></a></li>
 
-          <li><a class="nav-link scrollto" href="create-free-resume.html">Create Free Resume / CV</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url('resume/create_resume') ?>">Create Free Resume / CV</a></li>
           <li><a class="nav-link scrollto" href="index.html#services">Generate Statement of Purpose</a></li>
           <li><a class="nav-link scrollto" href="index.html#pricing">Pricing</a></li>
           <li><a class="nav-link scrollto" href="index.html#recent-blog-posts">Blog</a></li>
@@ -78,7 +79,7 @@
 
     </div>
   </header><!-- End Header -->
-
+  <?php if(empty($this->uri->segment(1))){ ?>
   <section id="hero-animated" class="hero-animated d-flex align-items-center">
     <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
       <img src="assets/img/hero-carousel/hero-carousel-1.svg" class="img-fluid animated">
@@ -90,3 +91,4 @@
       </div>
     </div>
   </section>
+  <?php } ?>
