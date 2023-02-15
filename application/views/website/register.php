@@ -39,43 +39,43 @@
                         <div class="form-group row m-2">
                             <label for="firstName" class="col-sm-3 control-label">First Name</label>
                             <div class="col-sm-9">
-                                <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus>
+                                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="form-control" autofocus>
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="lastName" class="col-sm-3 control-label">Last Name</label>
                             <div class="col-sm-9">
-                                <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+                                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control" autofocus>
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="email" class="col-sm-3 control-label">Email * </label>
                             <div class="col-sm-9">
-                                <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
+                                <input type="email" id="email" name="email" placeholder="Email" class="form-control" name= "email">
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="password" class="col-sm-3 control-label">Password*</label>
                             <div class="col-sm-9">
-                                <input type="password" id="password" placeholder="Password" class="form-control">
+                                <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="password" class="col-sm-3 control-label">Confirm Password *</label>
                             <div class="col-sm-9">
-                                <input type="password" id="password" placeholder="Password" class="form-control">
+                                <input type="password" id="cPassword" name="cPassword" placeholder="Password" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="birthDate" class="col-sm-3 control-label">Date of Birth *</label>
                             <div class="col-sm-9">
-                                <input type="date" id="birthDate" class="form-control">
+                                <input type="date" id="birthDate" name="birthDate" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="phoneNumber" class="col-sm-3 control-label">Phone number *</label>
                             <div class="col-sm-9">
-                                <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control">
+                                <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="Phone number" class="form-control">
                                 <span class="form-text">Your phone number won't be disclosed anywhere </span>
                             </div>
                         </div>
@@ -85,12 +85,12 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <label class="radio-inline">
-                                            <input type="radio" id="femaleRadio" value="Female">Female
+                                            <input type="radio" id="femaleRadio" name="gender" value="Female">Female
                                         </label>
                                     </div>
                                     <div class="col-sm-4">
                                         <label class="radio-inline">
-                                            <input type="radio" id="maleRadio" value="Male">Male
+                                            <input type="radio" id="maleRadio" name="gender" value="Male">Male
                                         </label>
                                     </div>
                                 </div>

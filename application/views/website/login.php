@@ -25,6 +25,18 @@
                 color: #0ea2bd;
                 font-weight: 500;
             }
+            label.error {
+                color: red;
+                font-size: 1rem;
+                display: block;
+                margin-top: 5px;
+            }
+
+            input.error {
+                border: 1px dashed red;
+                font-weight: 300;
+                color: red;
+            }
         </style>
     </head>
     <body class="text-center overflow-hidden">
@@ -35,17 +47,17 @@
                 </a>
                 <div class="card shadow p-3 mb-5 bg-body rounded">
                 <h2 class="text-center">Login Form</h2>
-                    <form class="login" role="form">
+                    <form class="login" id="login" role="form">
                         <div class="form-group row m-2">
                             <label for="email" class="col-sm-3 control-label">Email * </label>
                             <div class="col-sm-9">
-                                <input type="email" id="email" placeholder="Email" class="form-control" name= "email">
+                                <input type="email" id="username" placeholder="Email" class="form-control" name= "username">
                             </div>
                         </div>
                         <div class="form-group row m-2">
                             <label for="password" class="col-sm-3 control-label">Password*</label>
                             <div class="col-sm-9">
-                                <input type="password" id="password" placeholder="Password" class="form-control">
+                                <input type="password" id="password" placeholder="Password" class="form-control" name="password">
                             </div>
                         </div>
                         <div class="form-group row ms-2">
@@ -75,7 +87,8 @@
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="assets/js/toastr.min.js"></script>
-        <script src="assets/js/setup.js"></script>
+        <script src="<?= base_url() ?>assets/js/toastr.min.js"></script>
+        <script src="<?= base_url() ?>/assets/js/jquery.validate.min.js"></script>
+        <script src="<?= base_url() ?>/assets/js/account.js"></script>
     </body>
 </html>
