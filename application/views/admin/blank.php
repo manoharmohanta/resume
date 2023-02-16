@@ -10,13 +10,13 @@
               <h3 class="text-themecolor">Blank Page</h3>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <a href="javascript:void(0)">Home</a>
+                  <a href="<?= base_url('admin') ?>">Home</a>
                 </li>
                 <li class="breadcrumb-item active">Blank Page</li>
               </ol>
             </div>
             <div class="col-md-7 align-self-center">
-              <a href="https://www.wrappixel.com/templates/adminwrap/" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down text-white">
+              <a href="javascript:void(0)" class="btn waves-effect waves-light btn btn-info pull-right hidden-sm-down text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Create New</a>
             </div>
           </div>

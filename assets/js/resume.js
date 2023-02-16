@@ -94,4 +94,49 @@ $(function(){
     $(this).closest('.card').remove();
     return false;
   });
+  $("body").on('click', '#addRole', function(e){
+    html = `<form class="login" id="login" role="form" novalidate="novalidate">
+    <div class="form-group row m-2">
+        <label for="text" class="col-sm-3 control-label">Role * </label>
+        <div class="col-sm-9">
+            <input type="text" id="username" placeholder="Enter Role" class="form-control valid text-success" name="username" aria-invalid="false">
+        </div>
+    </div>
+    <div class="form-group row ms-2">
+        <div class="col-sm-9 col-sm-offset-3">
+            <span class="help-block">*Required fields</span>
+        </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-info mt-4 addRole" type="submit">
+            Add New
+        </button>
+    </div>
+</form>`;
+    $('.modal-title').html('Add New Role');
+    $('.modal-body').html(html);
+    $('.modal-footer').hide();
+    $('#staticBackdrop').modal('show');
+  });
 });
+
+// Datatables
+$(document).ready(function() {
+  var table = $('#example').DataTable();
+
+  $("#example tfoot th").each( function ( i ) {
+      var select = $('<select><option value=""></option></select>')
+          .appendTo( $(this).empty() )
+          .on( 'change', function () {
+              var val = $(this).val();
+
+              table.column( i )
+                  .search( val ? '^'+$(this).val()+'$' : val, true, false )
+                  .draw();
+          } );
+
+      table.column( i ).data().unique().sort().each( function ( d, j ) {
+          select.append( '<option value="'+d+'">'+d+'</option>' )
+      } );
+  } );
+} );

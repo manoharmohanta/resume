@@ -31,6 +31,7 @@
       href="<?= base_url() ?>/assets/admin/node_modules/perfect-scrollbar/css/perfect-scrollbar.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <!-- This page CSS -->
     <!-- chartist CSS -->
     <link href="<?= base_url() ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,6 +49,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/resume.css">
   </head>
 
   <body class="fix-header fix-sidebar card-no-border">

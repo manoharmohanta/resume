@@ -92,8 +92,14 @@ class Admin extends CI_Controller {
 	}
 	public function role(){
 		if($this->islogin()){
+			$this->db->where('status', 1);
+			$roles = $this->db->get('role')->result_array();
+			$details = array(
+				'page_name' => 'Roles',
+				'roles' => $roles,
+			);
 			$this->load->view('include/a-header');
-			$this->load->view('admin/roles');
+			$this->load->view('admin/roles', $details);
 			$this->load->view('include/a-footer');
 		}
 	}

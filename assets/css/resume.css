@@ -1,0 +1,17 @@
+.dataTables_wrapper .dataTables_filter input{
+    padding: 8px 40px;
+    margin: -8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 36px;
+    box-sizing: border-box;
+}
+table select {
+    width: 100%;
+    padding: 8px 40px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
