@@ -188,82 +188,82 @@
           <nav class="sidebar-nav">
             <ul id="sidebarnav">
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="index.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-tachometer"></i
-                  ><span class="hide-menu">Dashboard</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url("admin") ?>" aria-expanded="false">
+                  <i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              <?php if($this->session->userdata('role_id') != 1){ ?>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/lor') ?>" aria-expanded="false">
+                  <i class="fa fa-file-text-o"></i><span class="hide-menu">Letter of Recommed</span>
+                </a>
               </li>
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="pages-profile.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-user-circle-o"></i
-                  ><span class="hide-menu">Profile</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/resume') ?>" aria-expanded="false">
+                  <i class="fa fa-send-o"></i><span class="hide-menu">Resumes</span>
+                </a>
               </li>
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="table-basic.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-table"></i
-                  ><span class="hide-menu">Tables</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/sop') ?>" aria-expanded="false">
+                  <i class="fa fa-file-pdf-o"></i><span class="hide-menu">Statement of Purpose</span>
+                </a>
               </li>
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="icon-fontawesome.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-smile-o"></i
-                  ><span class="hide-menu">Icons</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/payments') ?>" aria-expanded="false">
+                  <i class="fa fa-rupee"></i><span class="hide-menu">Payments</span>
+                </a>
               </li>
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="map-google.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-globe"></i
-                  ><span class="hide-menu">Map</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/course_finder') ?>" aria-expanded="false">
+                  <i class="fa fa-address-card-o"></i><span class="hide-menu">Course Finder</span>
+                </a>
               </li>
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="pages-blank.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-bookmark-o"></i
-                  ><span class="hide-menu">Blank</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/profile') ?>" aria-expanded="false">
+                  <i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span>
+                </a>
+              </li>
+              <?php } ?>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/coupon') ?>" aria-expanded="false">
+                  <i class="fa fa-gift"></i><span class="hide-menu">Coupons</span>
+                </a>
               </li>
               <li>
-                <a
-                  class="waves-effect waves-dark"
-                  href="pages-error-404.html"
-                  aria-expanded="false"
-                  ><i class="fa fa-question-circle"></i
-                  ><span class="hide-menu">404</span></a
-                >
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/package') ?>" aria-expanded="false">
+                  <i class="fa fa-globe"></i><span class="hide-menu">Package</span>
+                </a>
+              </li>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/user_payment') ?>" aria-expanded="false">
+                  <i class="fa fa-rupee"></i><span class="hide-menu">User Payments List</span>
+                </a>
+              </li>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/template') ?>" aria-expanded="false">
+                  <i class="fa fa-file-pdf-o"></i><span class="hide-menu">Template</span>
+                </a>
+              </li>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/role') ?>" aria-expanded="false">
+                  <i class="fa fa-users"></i><span class="hide-menu">Roles</span>
+                </a>
+              </li>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/blog') ?>" aria-expanded="false">
+                  <i class="fa fa-rss"></i><span class="hide-menu">Blog</span>
+                </a>
+              </li>
+              <li>
+                <a class="waves-effect waves-dark" href="<?= base_url('admin/profile') ?>" aria-expanded="false">
+                  <i class="fa fa-user-circle-o"></i><span class="hide-menu">Profile</span>
+                </a>
               </li>
             </ul>
             <div class="text-center mt-4">
-              <a
-                href="https://www.wrappixel.com/templates/adminwrap/"
-                class="
-                  btn
-                  waves-effect waves-light
-                  btn-info
-                  hidden-md-down
-                  text-white
-                "
-              >
-                Upgrade to Pro</a
-              >
+              <a href="<?= base_url('api/logout') ?>" class="btn waves-effect waves-light btn-info hidden-md-down text-white">
+                <i class="fa fa-sign-out me-2 ms-2"></i> <span class="hide-menu me-2">Logout</span>
+              </a>
             </div>
           </nav>
           <!-- End Sidebar navigation -->
@@ -273,3 +273,8 @@
       <!-- ============================================================== -->
       <!-- End Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper">
+        

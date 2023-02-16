@@ -21,9 +21,10 @@ class Api extends CI_Controller {
 			$password = $this->security->xss_clean(htmlspecialchars($data->password, ENT_QUOTES));
 		}
 
-        $this->db->where('user_name',$username);
-        $this->db->or_where('user_email',$username);
-        $this->db->where('status',1);
+        $this->db->where('user.user_name',$username);
+        $this->db->or_where('user.user_email',$username);
+        $this->db->where('user.status',1);
+        $this->db->join('role','role.role_id=user.role_id');
         $this->db->limit(1);
         $check = $this->db->get('user');
 

@@ -21,9 +21,128 @@ class Admin extends CI_Controller {
 	 * Here the website code with login
 	 */
 	public function index(){
-		$this->load->view('include/a-header');
-		$this->load->view('admin/main');
-		$this->load->view('include/a-footer');
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/main');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function lor(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function resume(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function sop(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function payments(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function course_finder(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function coupon(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function package(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function user_payment(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function template(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function role(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/roles');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function blog(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function profile(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/blank');
+			$this->load->view('include/a-footer');
+		}
+	}
+
+	//My functions
+    function my_simple_crypt( $string, $action = 'e' ) {
+		// you may change these values to your own
+		$secret_key = 'my_simple_secret_key';
+		$secret_iv = 'my_simple_secret_iv';
+	 
+		$output = false;
+		$encrypt_method = "AES-256-CBC";
+		$key = hash( 'sha256', $secret_key );
+		$iv = substr( hash( 'sha256', $secret_iv ), 0, 16 );
+	 
+		if( $action == 'e' ) {
+			$output = base64_encode( openssl_encrypt( $string, $encrypt_method, $key, 0, $iv ) );
+		}
+		else if( $action == 'd' ){
+			$output = openssl_decrypt( base64_decode( $string ), $encrypt_method, $key, 0, $iv );
+		}
+	 
+		return $output;
+	}
+
+    private function islogin(){
+        if(!empty($this->session->userdata('user_id'))){
+            return true;
+        }else{
+            header('Location: '.base_url().'api/logout');
+        }
+    }
+
+    private function isHTML($string){
+		return ($string != strip_tags($string));
 	}
 	
 }
