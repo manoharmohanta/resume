@@ -14,38 +14,34 @@
       content="AdminWrap Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>AdminWrap Lite Template by WrapPixel</title>
+    <title>Admin Dashboard - ResumeGenie</title>
     <link
       rel="canonical"
       href="https://www.wrappixel.com/templates/adminwrap-lite/"
     />
     <!-- Favicon icon -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="../assets/images/favicon.png"
-    />
+    <link href="<?= base_url() ?>/assets/img/favicon.png" rel="icon">
+    <link href="<?= base_url() ?>/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <!-- Bootstrap Core CSS -->
     <link
-      href="../assets/node_modules/bootstrap/css/bootstrap.min.css"
+      href="<?= base_url() ?>/assets/admin/node_modules/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css"
+      href="<?= base_url() ?>/assets/admin/node_modules/perfect-scrollbar/css/perfect-scrollbar.css"
       rel="stylesheet"
     />
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="../assets/node_modules/morrisjs/morris.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!--c3 CSS -->
-    <link href="../assets/node_modules/c3-master/c3.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/admin/node_modules/c3-master/c3.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/admin/css/style.css" rel="stylesheet" />
     <!-- Dashboard 1 Page CSS -->
-    <link href="css/pages/dashboard1.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/admin/css/pages/dashboard1.css" rel="stylesheet" />
     <!-- You can change the theme colors from here -->
-    <link href="css/colors/default.css" id="theme" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/admin/css/colors/default.css" id="theme" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,7 +57,7 @@
     <div class="preloader">
       <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label">Admin Wrap</p>
+        <p class="loader__label">Resume Genie</p>
       </div>
     </div>
     <!-- ============================================================== -->
@@ -77,33 +73,33 @@
           <!-- Logo -->
           <!-- ============================================================== -->
           <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="<?= base_url('admin') ?>">
               <!-- Logo icon --><b>
                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                 <!-- Dark Logo icon -->
                 <img
-                  src="../assets/images/logo-icon.png"
+                  src="<?= base_url() ?>/assets/img/resume.png"
                   alt="homepage"
-                  class="dark-logo"
+                  class="dark-logo img-fluid"
                 />
                 <!-- Light Logo icon -->
                 <img
-                  src="../assets/images/logo-light-icon.png"
+                  src="<?= base_url() ?>/assets/img/resume.png"
                   alt="homepage"
-                  class="light-logo"
+                  class="light-logo img-fluid"
                 />
               </b>
               <!--End Logo icon -->
               <!-- Logo text --><span>
                 <!-- dark Logo text -->
-                <img
-                  src="../assets/images/logo-text.png"
+                <!-- <img
+                  src="<?= base_url() ?>/assets/img/resume.png"
                   alt="homepage"
-                  class="dark-logo" />
+                  class="dark-logo img-fluid" /> -->
                 <!-- Light Logo text -->
                 <img
-                  src="../assets/images/logo-light-text.png"
-                  class="light-logo"
+                  src="<?= base_url() ?>/assets/img/resume.png"
+                  class="light-logo img-fluid"
                   alt="homepage"
               /></span>
             </a>
@@ -167,7 +163,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                   ><img
-                    src="../assets/images/users/1.jpg"
+                    src="<?= base_url() ?>/assets/img/favicon.png"
                     alt="user"
                     class=""
                   />

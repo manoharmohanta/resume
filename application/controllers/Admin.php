@@ -21,7 +21,9 @@ class Admin extends CI_Controller {
 	 * Here the website code with login
 	 */
 	public function index(){
-		$this->load->view('welcome_message');
+		$this->load->view('include/a-header');
+		$this->load->view('admin/main');
+		$this->load->view('include/a-footer');
 	}
 	
 }

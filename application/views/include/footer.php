@@ -86,8 +86,8 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <script src="<?= base_url() ?>/assets/admin/node_modules/jquery/jquery.min.js"></script>
+  <script src="<?= base_url() ?>/assets/admin/node_modules/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="<?= base_url('assets/vendor/aos/aos.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/glightbox/js/glightbox.min.js') ?>"></script>
   <script src="<?= base_url('assets/vendor/isotope-layout/isotope.pkgd.min.js') ?>"></script>
