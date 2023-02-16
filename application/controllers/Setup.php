@@ -11,6 +11,7 @@ class Setup extends CI_Controller {
 	public function __construct(){
         parent::__construct();
         $this->load->dbforge();
+		$this->load->dbutil();
     }
 
 	public function index(){
@@ -165,6 +166,16 @@ class Setup extends CI_Controller {
 					'constraint' => '100',
 					'unique' => TRUE,
 			),
+			'first_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'last_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
@@ -189,6 +200,11 @@ class Setup extends CI_Controller {
 				'unique' => TRUE,
 			),
 			'user_gender' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'user_phone' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 				'unique' => TRUE,
@@ -415,5 +431,20 @@ class Setup extends CI_Controller {
 		$this->dbforge->add_field($fields);
 		$attributes = array('ENGINE' => 'InnoDB');
 		$this->dbforge->create_table('resumegenie', FALSE, $attributes);
+	}
+
+	public function backup(){
+		$prefs = array(
+			'format'        => 'gzip',
+			'filename'      => 'mybackup.sql',              // File name - NEEDED ONLY WITH ZIP FILES
+			'newline'       => "\n"                         // Newline character used in backup file
+		);
+		//Database
+		$backup =$this->dbutil->backup($prefs);
+		write_file('assets/database_'.date('Y-m-d').'.zip', $backup);
+		//Project
+		$this->load->library('zip');
+		$this->zip->read_dir(FCPATH, FALSE);
+		$this->zip->archive('assets/project_'.date('Y-m-d').'.zip');
 	}
 }

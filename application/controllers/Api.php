@@ -21,8 +21,8 @@ class Api extends CI_Controller {
 			$password = $this->security->xss_clean(htmlspecialchars($data->password, ENT_QUOTES));
 		}
 
-        $this->db->where('username',$username);
-        $this->db->or_where('email',$username);
+        $this->db->where('user_name',$username);
+        $this->db->or_where('user_email',$username);
         $this->db->where('status',1);
         $this->db->limit(1);
         $check = $this->db->get('user');
@@ -30,10 +30,10 @@ class Api extends CI_Controller {
         if($check->num_rows() > 0){
             $user_data = $check->row_array();
             $this->session->set_userdata($user_data);
-            if($user_data['password'] == md5($password)){
+            if($user_data['user_password'] == md5($password)){
                 $response = array(
-                    'msg'=> 'Welcome to Dashboard '. $user_data['username'],
-                    'url' => base_url('welcome/dashboard'),
+                    'msg'=> 'Welcome to Dashboard '. $user_data['user_name'],
+                    'url' => base_url('admin'),
                     'status' => 1,
                 );
             }else{
@@ -54,29 +54,39 @@ class Api extends CI_Controller {
 
     public function register(){
         $password = $this->security->xss_clean(htmlspecialchars($this->input->post('password')));
-		$username = $this->security->xss_clean(htmlspecialchars($this->input->post('username')));
+        $cPassword = $this->security->xss_clean(htmlspecialchars($this->input->post('cPassword')));
+		$firstName = $this->security->xss_clean(htmlspecialchars($this->input->post('firstName')));
+		$lastName = $this->security->xss_clean(htmlspecialchars($this->input->post('lastName')));
 		$email = $this->security->xss_clean(htmlspecialchars($this->input->post('email')));
-		$country = $this->security->xss_clean(htmlspecialchars($this->input->post('country')));
+		$birthDate = $this->security->xss_clean(htmlspecialchars($this->input->post('birthDate')));
+		$phoneNumber = $this->security->xss_clean(htmlspecialchars($this->input->post('phoneNumber')));
+		$gender = $this->security->xss_clean(htmlspecialchars($this->input->post('gender')));
 
-		if(empty($username)){
+		if(empty($email)){
 			$json = file_get_contents('php://input');
 			$data = json_decode($json);
-			$username = $this->security->xss_clean(htmlspecialchars($data->username, ENT_QUOTES));
+			$cPassword = $this->security->xss_clean(htmlspecialchars($data->cPassword, ENT_QUOTES));
 			$password = $this->security->xss_clean(htmlspecialchars($data->password, ENT_QUOTES));
-			$country = $this->security->xss_clean(htmlspecialchars($data->country, ENT_QUOTES));
+			$gender = $this->security->xss_clean(htmlspecialchars($data->gender, ENT_QUOTES));
 			$email = $this->security->xss_clean(htmlspecialchars($data->email, ENT_QUOTES));
+			$firstName = $this->security->xss_clean(htmlspecialchars($data->firstName, ENT_QUOTES));
+			$lastName = $this->security->xss_clean(htmlspecialchars($data->lastName, ENT_QUOTES));
+			$birthDate = $this->security->xss_clean(htmlspecialchars($data->birthDate, ENT_QUOTES));
+			$phoneNumber = $this->security->xss_clean(htmlspecialchars($data->phoneNumber, ENT_QUOTES));
 		}
 
-        $this->form_validation->set_rules('username', 'Username','required|min_length[8]|max_length[12]|is_unique[user.username]',
+        $this->form_validation->set_rules('first_name', 'First Name','required|min_length[8]|max_length[12]|is_unique[user.username]',
             array(
                     'required'      => 'You have not provided %s.',
-                    'is_unique'     => 'This %s already exists.',
                     'min_length' => '%s must be at least 8 characters long',
                     'max_length' => 'Maximum 12 characters accepted',
             )
         );
         $this->form_validation->set_rules('password', 'Password', 'required');
-        $this->form_validation->set_rules('country', 'Country', 'required');
+        $this->form_validation->set_rules('user_phone', 'Phone Number', 'required');
+        $this->form_validation->set_rules('user_gender', 'Gender', 'required');
+        $this->form_validation->set_rules('last_name', 'Last Name', 'required');
+        $this->form_validation->set_rules('user_dob', 'Date of Birth', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[user.email]',
             array(
                 'required'      => 'You have not provided %s.',
