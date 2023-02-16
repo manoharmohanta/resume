@@ -63,12 +63,12 @@
 
           <li class="dropdown1"><a href="<?= base_url() ?>"><span>Home</span> </i></a></li>
 
-          <li><a class="nav-link scrollto" href="<?= base_url('resume/create_resume') ?>">Create Free Resume / CV</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url('resume/resume_template') ?>">Create Free Resume / CV</a></li>
           <li><a class="nav-link scrollto" href="index.html#services">Generate Statement of Purpose</a></li>
-          <li><a class="nav-link scrollto" href="index.html#pricing">Pricing</a></li>
-          <li><a class="nav-link scrollto" href="index.html#recent-blog-posts">Blog</a></li>
-          <li><a class="nav-link scrollto" href="index.html#about">About Us</a></li>
-          <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url() ?>#pricing">Pricing</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url() ?>#recent-blog-posts">Blog</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url() ?>#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url() ?>#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->

@@ -38,9 +38,15 @@ class Resume extends CI_Controller {
 		$this->load->view('website/forgot');
 	}
 
+	public function resume_template(){
+		$this->load->view('include/header');
+		$this->load->view('website/resume-template');
+		$this->load->view('include/footer');
+	}
+
 	public function create_resume(){
 		$this->load->view('include/header');
-		$this->load->view('website/create-free-resume');
+		$this->load->view('website/create-resume');
 		$this->load->view('include/footer');
 	}
 
