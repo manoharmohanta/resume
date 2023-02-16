@@ -27,8 +27,8 @@
 
               <div class="col-lg-4 line-content">
                 <article class="d-flex flex-column">
-                    <img src="assets/img/resume/1.png" alt="" class="img-fluid">
-                    <a class ="mt-1 btn btn-block btn-primary"href="create-resume.html">Customize This Template</a>
+                    <img src="<?= base_url('assets/img/resume/1.png') ?>" alt="" class="img-fluid">
+                    <a class ="mt-1 btn btn-block btn-primary"href="<?= base_url('resume/create_resume') ?>">Customize This Template</a>
                 </article>
               </div><!-- End post list item -->
 
