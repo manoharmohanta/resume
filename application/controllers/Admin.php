@@ -92,7 +92,7 @@ class Admin extends CI_Controller {
 	}
 	public function role(){
 		if($this->islogin()){
-			$this->db->where('status', 1);
+			// $this->db->where('status', 1);
 			$roles = $this->db->get('role')->result_array();
 			$details = array(
 				'page_name' => 'Roles',
@@ -104,22 +104,94 @@ class Admin extends CI_Controller {
 		}
 	}
 	public function get_role(){
+		$role_id = $this->security->xss_clean($this->input->post('roleId'));
+
+		$this->db->where('role_id', ($role_id));
+		$this->db->where('status', 1);
+		$roles = $this->db->get('role');
+		if($roles->num_rows() >0){
+			$result= array(
+				'data' => $roles->row_array(),
+				'msg'=> 'This role title already exists',
+				'status' => 1,
+			);
+		}else{
+			$result= array(
+				'msg'=> 'Invalid Data Provided',
+				'status' => 0,
+			);
+		}
+		echo json_encode($result); exit();
+	}
+	public function submit_role(){
 		if($this->islogin()){
-			$id = $this->input->post('id');
+			$role_tilte = strtolower($this->security->xss_clean($this->input->post('roleName')));
+			$role_id = $this->security->xss_clean($this->input->post('roleId'));
+			$operation = $this->security->xss_clean($this->input->post('operation'));
 
-			$this->db->where('role_id', $id);
-			$this->db->where('status', 1);
-			$roles = $this->db->get('role');
-
-			if($roles->num_rows() >0){
-				$result= array(
-					'data' => $roles->row_array(),
-					'msg'=> 'Data Received',
-					'status' => 1,
-				);
+			if($operation == 'add'){
+				$this->db->where('role_title', strtolower($role_tilte));
+				$this->db->where('status', 1);
+				$roles = $this->db->get('role');
+				if($roles->num_rows() >0 && empty($role_id)){
+					$result= array(
+						'msg'=> 'This role title already exists',
+						'status' => 0,
+					);
+				}else{
+					if(empty($role_id)){
+						$data = array(
+							'role_title' => strtolower($role_tilte),
+							'role_created' => date('Y-m-d'),
+						);
+						$this->db->insert('role',$data);
+						$result= array(
+							'msg'=> 'Role has Added Successfully',
+							'status' => 1,
+						);
+					}else{
+						$data = array(
+							'role_title' => strtolower($role_tilte),
+							'role_created' => date('Y-m-d'),
+						);
+						$this->db->where('role_id', $role_id);
+						$this->db->update('role',$data);
+						$result= array(
+							'msg'=> 'Role has Updated Successfully',
+							'status' => 1,
+						);
+					}
+				}
+			}elseif($operation == 'delete'){
+				if(empty($role_id)){
+					$result= array(
+						'msg'=> 'Please try Again',
+						'status' => 0,
+					);
+				}else{
+					$this->db->where('role_id', $role_id);
+					$role = $this->db->get('role')->row_array();
+					if($role['status'] == 1){
+						$this->db->set('status', 0);
+						$this->db->where('role_id', $role_id);
+						$this->db->update('role');
+						$result= array(
+							'msg'=> 'Role has Deleted Successfully',
+							'status' => 1,
+						);
+					}else{
+						$this->db->set('status', 1);
+						$this->db->where('role_id', $role_id);
+						$this->db->update('role');
+						$result= array(
+							'msg'=> 'Role has Retrived Successfully',
+							'status' => 1,
+						);
+					}
+				}
 			}else{
-				$result= array(
-					'msg'=> 'Please click again',
+				$result = array(
+					'msg' => 'Please provide correct opertion code',
 					'status' => 0,
 				);
 			}
@@ -129,7 +201,14 @@ class Admin extends CI_Controller {
 	public function blog(){
 		if($this->islogin()){
 			$this->load->view('include/a-header');
-			$this->load->view('admin/blank');
+			$this->load->view('admin/blog');
+			$this->load->view('include/a-footer');
+		}
+	}
+	public function create_blog(){
+		if($this->islogin()){
+			$this->load->view('include/a-header');
+			$this->load->view('admin/create_blog');
 			$this->load->view('include/a-footer');
 		}
 	}

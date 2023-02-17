@@ -1,6 +1,7 @@
 $('#login').submit(function(e){
     e.preventDefault();
     $('.setup').prop('disabled', true); 
+    login_validate();
     $.ajax({
         url:'../api/login',
         type:"post",
@@ -154,7 +155,9 @@ $('#resgister').submit(function(e){
         },
     });
 });
-login_validate();
+$("input").keyup(function(){
+    login_validate();
+});
 function login_validate(){
     $("#login").validate({
         errorClass: "error text-danger",
@@ -162,10 +165,11 @@ function login_validate(){
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
             },
             password: {
                 required: true,
+                minlength: 6,
             },
         },
         messages : {
@@ -175,6 +179,7 @@ function login_validate(){
             },
             password: {
                 required: "Please Enter Password",
+                minlength: "Minimum 6 Characters Needed",
             }
         },
     });

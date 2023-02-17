@@ -31,6 +31,7 @@
       href="<?= base_url() ?>/assets/admin/node_modules/perfect-scrollbar/css/perfect-scrollbar.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/decoupled-document/ckeditor.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <!-- This page CSS -->
     <!-- chartist CSS -->
