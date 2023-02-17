@@ -103,6 +103,29 @@ class Admin extends CI_Controller {
 			$this->load->view('include/a-footer');
 		}
 	}
+	public function get_role(){
+		if($this->islogin()){
+			$id = $this->input->post('id');
+
+			$this->db->where('role_id', $id);
+			$this->db->where('status', 1);
+			$roles = $this->db->get('role');
+
+			if($roles->num_rows() >0){
+				$result= array(
+					'data' => $roles->row_array(),
+					'msg'=> 'Data Received',
+					'status' => 1,
+				);
+			}else{
+				$result= array(
+					'msg'=> 'Please click again',
+					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
 	public function blog(){
 		if($this->islogin()){
 			$this->load->view('include/a-header');

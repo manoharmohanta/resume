@@ -43,6 +43,8 @@
     <link href="<?= base_url() ?>/assets/admin/css/pages/dashboard1.css" rel="stylesheet" />
     <!-- You can change the theme colors from here -->
     <link href="<?= base_url() ?>/assets/admin/css/colors/default.css" id="theme" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="<?= base_url() ?>assets/css/toastr.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

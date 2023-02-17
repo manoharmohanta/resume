@@ -57,8 +57,8 @@
                           <td><?= ucwords($val['role_title']) ?></td>
                           <td><?= $val['role_created'] ?></td>
                           <td>
-                            <a href="#" data-id="<?= $val['role_id'] ?>" class="text-primary"><i class="fa fa-edit fa-lg m-2"></i></a>
-                            <a href="#" data-id="<?= $val['role_id'] ?>" class="text-danger"><i class="fa fa-trash-o fa-lg m-2"></i></a>
+                            <a href="#" data-id="<?= $val['role_id'] ?>" class="text-primary editRole"><i class="fa fa-edit fa-lg m-2"></i></a>
+                            <a href="#" data-id="<?= $val['role_id'] ?>" class="text-danger deleteRole"><i class="fa fa-trash-o fa-lg m-2"></i></a>
                           </td>
                         </tr>
                         <?php } ?>

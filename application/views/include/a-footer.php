@@ -65,7 +65,10 @@
     <script src="<?= base_url() ?>/assets/admin/node_modules/d3/d3.min.js"></script>
     <script src="<?= base_url() ?>/assets/admin/node_modules/c3-master/c3.min.js"></script>
     <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
     <script src="<?= base_url() ?>/assets/admin/js/dashboard1.js"></script>
+    <script src="<?= base_url() ?>assets/js/toastr.min.js"></script>
+    <script src="<?= base_url() ?>/assets/js/jquery.validate.min.js"></script>
     <script src="<?= base_url() ?>/assets/js/resume.js"></script>
   </body>
 </html>
