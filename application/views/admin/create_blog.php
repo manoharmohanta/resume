@@ -33,7 +33,7 @@
                   <div class="card-body">
                     <div class="input-group">
                       <span class="input-group-text" id="basic-addon1">Blog Title</span>
-                      <input type="text" class="form-control" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
+                      <input type="text" class="form-control" name="title" placeholder="Title" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                   </div>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="card m-0 p-0">
                   <div class="card-body">
                     <div id="toolbar-container"></div>
-                    <div id="editor">
+                    <div id="editor" name="content">
                       <p>This is some text</p>
                     </div>
                   </div>
@@ -53,7 +53,7 @@
                   <div class="card-body">
                     <div class="form-group files">
                       <label>Upload Your File </label>
-                      <input type="file" class="form-control" multiple="">
+                      <input type="file" name="image" class="form-control" multiple="">
                     </div>
                   </div>
                 </div>

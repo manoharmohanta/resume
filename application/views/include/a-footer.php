@@ -43,6 +43,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="<?= base_url() ?>/assets/admin/node_modules/jquery/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/decoupled-document/ckeditor.js"></script>
     <!-- Bootstrap popper Core JavaScript -->
     <script src="<?= base_url() ?>/assets/admin/node_modules/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Data Tables -->

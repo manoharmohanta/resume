@@ -1,4 +1,5 @@
 $(function(){
+  let editor;
   $('.addQualification').click(function(){
     $('.qualification').append(`<div class="card mb-1">
     <span class="position-absolute top-0 end-0 close" data-effect="fadeOut"><i class="bi bi-x-circle"></i></span>
@@ -396,12 +397,10 @@ $(function(){
         },
     });
   });
-});
 
-// Datatables
-$(document).ready(function() {
+
+  // Datatables
   var table = $('#example').DataTable();
-
   $("#example tfoot th").each( function ( i ) {
       var select = $('<select><option value=""></option></select>')
           .appendTo( $(this).empty() )
@@ -417,16 +416,24 @@ $(document).ready(function() {
           select.append( '<option value="'+d+'">'+d+'</option>' )
       } );
   } );
-} );
 
-//CK Editor
-DecoupledEditor
-        .create( document.querySelector( '#editor' ) )
-        .then( editor => {
-            const toolbarContainer = document.querySelector( '#toolbar-container' );
+  //CK Editor
+  editor = DecoupledEditor.create( document.querySelector( '#editor' ) ).then( editor => {
+      const toolbarContainer = document.querySelector( '#toolbar-container' );
+      toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+  } ).catch( error => {
+      console.error( error );
+  } );
 
-            toolbarContainer.appendChild( editor.ui.view.toolbar.element );
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
+  $("body").on('submit', '#submitBlog', function(e){
+    e.preventDefault();
+    var formData = new FormData(this);
+    formData.append('content',$('#editor').html());
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]); 
+  }
+  });
+
+
+});
+
