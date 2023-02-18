@@ -44,6 +44,10 @@ class Setup extends CI_Controller {
 			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
 			$response['status'] = 0;
 		}
+		if (!$this->db->table_exists('blog')){
+			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
+			$response['status'] = 0;
+		}
 		if(empty($response['msg'])){
 			$response['msg'] = 'Your Website is updated to latest version 1.0';
 			$response['status'] = 1;
@@ -73,6 +77,9 @@ class Setup extends CI_Controller {
 		}
 		if (!$this->db->table_exists('resumegenie')){
 			$this->resumegenie();
+		}
+		if (!$this->db->table_exists('blog')){
+			$this->blog();
 		}
 
 		$response = array(
@@ -111,6 +118,56 @@ class Setup extends CI_Controller {
 		$this->dbforge->add_field($fields);
 		$attributes = array('ENGINE' => 'InnoDB');
 		$this->dbforge->create_table('role', FALSE, $attributes);
+	}
+
+	private function blog(){
+		$fields = array(
+			'blog_id' => array(
+					'type' => 'INT',
+					'constraint' => 5,
+					'unsigned' => TRUE,
+					'auto_increment' => TRUE
+			),
+			'blog_title' => array(
+					'type' => 'VARCHAR',
+					'constraint' => '900',
+					'unique' => TRUE,
+			),
+			'blog_content' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '9999',
+				'unique' => TRUE,
+			),
+			'blog_image' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '900',
+				'unique' => TRUE,
+			),
+			'user_id' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'views' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '999',
+				'unique' => TRUE,
+			),
+			'blog_created' => array(
+					'type' =>'VARCHAR',
+					'constraint' => '100',
+					'unique' => TRUE,
+			),
+			'status' => array(
+					'type' => 'INT',
+					'null' => TRUE,
+					'default' => 1,
+			),
+		);
+		$this->dbforge->add_key('blog_id', TRUE);
+		$this->dbforge->add_field($fields);
+		$attributes = array('ENGINE' => 'InnoDB');
+		$this->dbforge->create_table('blog', FALSE, $attributes);
 	}
 
 	private function package_category(){

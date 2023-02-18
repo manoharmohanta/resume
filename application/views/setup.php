@@ -49,7 +49,7 @@
                         <?php }?>
                     </ul>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button class="btn btn-primary mt-4 setup" type="button">
+                        <button class="btn btn-primary mt-4 setup" type="button" <?= ($status == 0)? '' : 'disabled' ?>>
                             Start Your Set Up
                             <!-- <div class="spinner-border text-warning" role="status">
                                 <span class="visually-hidden">Loading...</span>
