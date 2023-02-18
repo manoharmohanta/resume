@@ -212,6 +212,9 @@ class Admin extends CI_Controller {
 			$this->load->view('include/a-footer');
 		}
 	}
+	public function submit_blog(){
+		//preg_replace('/class=".*?"/', '',strip_tags($html,'<span><p><a><h1><h2><h3><h4><h5><h6><table><tr><td><tbody>'))
+	}
 	public function profile(){
 		if($this->islogin()){
 			$this->load->view('include/a-header');
