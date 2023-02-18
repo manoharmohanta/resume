@@ -426,11 +426,12 @@ $(function(){
 
   $("body").on('submit', '#submitBlog', function(e){
     e.preventDefault();
+    var url = window.location.href;
+    var arguments = url.split('/');
     var formData = new FormData(this);
     formData.append('blogContent',$('#editor').html());
-    formData.append('operation','add');
     $.ajax({
-      url:'submit_blog',
+      url:(arguments.length == 7) ? '../submit_blog' : 'submit_blog',
       type:"post",
       data: formData,
       processData:false,
@@ -440,6 +441,7 @@ $(function(){
       success: function(data){
           var data = jQuery.parseJSON(data);
           if(data.status == 1){
+            window.location.href= data.url;
             toastr["success"](data.msg, 'Success!!')
 
               toastr.options = {
@@ -459,7 +461,6 @@ $(function(){
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
               }
-              $('#staticBackdrop').modal('hide');
           }else{
               $('.submitButton').prop('disabled', false);
               toastr["error"](data.msg, 'Error!!')

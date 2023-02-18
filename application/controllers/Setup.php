@@ -106,7 +106,6 @@ class Setup extends CI_Controller {
 			'role_created' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -131,7 +130,6 @@ class Setup extends CI_Controller {
 			'blog_title' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '900',
-					'unique' => TRUE,
 			),
 			'blog_content' => array(
 				'type' => 'VARCHAR',
@@ -141,22 +139,18 @@ class Setup extends CI_Controller {
 			'blog_image' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '900',
-				'unique' => TRUE,
 			),
 			'user_id' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'views' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '999',
-				'unique' => TRUE,
 			),
 			'blog_created' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -196,7 +190,6 @@ class Setup extends CI_Controller {
 			'package_created' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -226,12 +219,10 @@ class Setup extends CI_Controller {
 			'first_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'last_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
@@ -249,17 +240,14 @@ class Setup extends CI_Controller {
 			'user_password' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_dob' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_gender' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_phone' => array(
 				'type' => 'VARCHAR',
@@ -269,17 +257,14 @@ class Setup extends CI_Controller {
 			'user_education' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_job' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_created' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -304,7 +289,6 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'amount' => array(
 				'type' => 'VARCHAR',
@@ -336,12 +320,10 @@ class Setup extends CI_Controller {
 			'payment_expire' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'coupon_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -366,27 +348,19 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'coupon_code' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 				'unique' => TRUE,
 			),
-			'coupon_code' => array(
-					'type' =>'VARCHAR',
-					'constraint' => '100',
-					'unique' => TRUE,
-			),
 			'coupon_created' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -411,27 +385,22 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_image' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_category' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'template_created' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -456,27 +425,23 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_category' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'resumegenie_created' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
+				'unique' => FALSE,
 			),
 			'status' => array(
 					'type' => 'INT',

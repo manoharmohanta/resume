@@ -198,25 +198,47 @@ class Admin extends CI_Controller {
 			echo json_encode($result); exit();
 		}
 	}
+
 	public function blog(){
 		if($this->islogin()){
+			$dbResult = $this->db->get('blog')->result_array();
+			$details = array(
+				'page_name' => 'Blogs',
+				'db_result' => $dbResult,
+			);
 			$this->load->view('include/a-header');
-			$this->load->view('admin/blog');
+			$this->load->view('admin/blog',$details);
 			$this->load->view('include/a-footer');
 		}
 	}
 	public function create_blog(){
 		if($this->islogin()){
-			$this->load->view('include/a-header');
-			$this->load->view('admin/create_blog');
-			$this->load->view('include/a-footer');
+			if(empty($this->uri->segment(3))){
+				$this->load->view('include/a-header');
+				$this->load->view('admin/create_blog');
+				$this->load->view('include/a-footer');
+			}else{
+				$this->db->where('blog_id', $this->uri->segment(3));
+				$dbResult = $this->db->get('blog');
+				if($dbResult->num_rows() > 0){
+					$details = array(
+						'page_name' => 'Update Blog',
+						'db_result' => $dbResult->row_array(),
+					);
+					$this->load->view('include/a-header');
+					$this->load->view('admin/create_blog', $details);
+					$this->load->view('include/a-footer');
+				}else{
+					show_404();
+				}
+			}
 		}
 	}
 	public function submit_blog(){
 		if($this->islogin()){
 			$blog_tilte = strtolower($this->security->xss_clean($this->input->post('blogName')));
 			$blog_id = $this->security->xss_clean($this->input->post('blogId'));
-			$blog_content = $this->security->xss_clean($this->input->post('blogContent'));
+			$blog_content = strip_tags($this->security->xss_clean($this->input->post('blogContent')), '<p><b><figure><table><td><tr><th><tbody><thead><span><br><ol><ul><li><blockquote>');
 			$operation = $this->security->xss_clean($this->input->post('operation'));
 
 			if($operation == 'add'){
@@ -237,36 +259,52 @@ class Admin extends CI_Controller {
 								'status' => 0,
 							);
 						}else{
+							if(!empty($blog_tilte)){
+								$data = array(
+									'blog_title' => strtolower($blog_tilte),
+									'blog_content' => ($blog_content),
+									'user_id' => ($this->session->userdata('user_id')),
+									'blog_image' => $image_details['upload_data']['raw_name'].$image_details['upload_data']['file_ext'],
+									'blog_created' => date('Y-m-d'),
+								);
+								$this->db->insert('blog',$data);
+								$result= array(
+									'url' => base_url('admin/blog'),
+									'msg'=> 'Blog has Added Successfully',
+									'status' => 1,
+								);
+							}else{
+								$result= array(
+									'msg'=> 'Enter Blog Title',
+									'status' => 0,
+								);
+							}
+						}						
+					}else{
+						if(!empty($blog_tilte)){
 							$data = array(
 								'blog_title' => strtolower($blog_tilte),
 								'blog_content' => ($blog_content),
 								'user_id' => ($this->session->userdata('user_id')),
-								'blog_image' => $image_details['upload_data']['raw_name'] . '_thumb' . $image_details['upload_data']['file_ext'],
 								'blog_created' => date('Y-m-d'),
 							);
-							$this->db->insert('blog',$data);
+							$image_details = $this->upload('image'); 
+							if($image_details['status'] == 1){
+								$data['blog_image'] = $image_details['upload_data']['raw_name'].$image_details['upload_data']['file_ext'];
+							}
+							$this->db->where('blog_id', $blog_id);
+							$this->db->update('blog',$data);
 							$result= array(
-								'msg'=> 'Blog has Added Successfully',
+								'url' => base_url('admin/blog'),
+								'msg'=> 'Blog has Updated Successfully',
 								'status' => 1,
 							);
-						}						
-					}else{
-						$image_details = $this->upload('image'); 
-						if($image_details['status'] == 1){
-							$data['blog_image'] = $image_details['upload_data']['raw_name'] . '_thumb' . $image_details['upload_data']['file_ext'];
+						}else{
+							$result= array(
+								'msg'=> 'Enter Blog Title',
+								'status' => 0,
+							);
 						}
-						$data = array(
-							'blog_title' => strtolower($blog_tilte),
-							'blog_content' => ($blog_content),
-							'user_id' => ($this->session->userdata('user_id')),
-							'blog_created' => date('Y-m-d'),
-						);
-						$this->db->where('blog_id', $blog_id);
-						$this->db->update('blog',$data);
-						$result= array(
-							'msg'=> 'Blog has Updated Successfully',
-							'status' => 1,
-						);
 					}
 				}
 			}elseif($operation == 'delete'){
@@ -305,6 +343,7 @@ class Admin extends CI_Controller {
 			echo json_encode($result); exit();
 		}
 	}
+	
 	public function profile(){
 		if($this->islogin()){
 			$this->load->view('include/a-header');
