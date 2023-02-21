@@ -398,7 +398,6 @@ $(function(){
     });
   });
 
-
   // Datatables
   var table = $('#example').DataTable();
   $("#example tfoot th").each( function ( i ) {
@@ -427,11 +426,103 @@ $(function(){
 
   $("body").on('submit', '#submitBlog', function(e){
     e.preventDefault();
+    var url = window.location.href;
+    var arguments = url.split('/');
     var formData = new FormData(this);
-    formData.append('content',$('#editor').html());
-    for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
-  }
+    formData.append('blogContent',$('#editor').html());
+    $.ajax({
+      url:(arguments.length == 7) ? '../submit_blog' : 'submit_blog',
+      type:"post",
+      data: formData,
+      processData:false,
+      contentType:false,
+      cache:false,
+      async:false,
+      success: function(data){
+          var data = jQuery.parseJSON(data);
+          if(data.status == 1){
+            window.location.href= data.url;
+            toastr["success"](data.msg, 'Success!!')
+
+              toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+              }
+          }else{
+              $('.submitButton').prop('disabled', false);
+              toastr["error"](data.msg, 'Error!!')
+
+              toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+              }
+          }
+      },
+      error: function (jqXHR, exception) {
+          $('.submitButton').prop('disabled', false);
+          var msg = '';
+          if (jqXHR.status === 0) {
+              msg = 'Not connect.\n Verify Network.';
+          } else if (jqXHR.status == 404) {
+              msg = 'Requested page not found. [404]';
+          } else if (jqXHR.status == 500) {
+              msg = 'Internal Server Error [500].';
+          } else if (exception === 'parsererror') {
+              msg = 'Requested JSON parse failed.';
+          } else if (exception === 'timeout') {
+              msg = 'Time out error.';
+          } else if (exception === 'abort') {
+              msg = 'Ajax request aborted.';
+          } else {
+              msg = 'Uncaught Error.\n' + jqXHR.responseText;
+          }
+          toastr["error"](msg, e)
+
+          toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+          }
+      },
+    });
   });
 
 

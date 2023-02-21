@@ -44,6 +44,10 @@ class Setup extends CI_Controller {
 			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
 			$response['status'] = 0;
 		}
+		if (!$this->db->table_exists('blog')){
+			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
+			$response['status'] = 0;
+		}
 		if(empty($response['msg'])){
 			$response['msg'] = 'Your Website is updated to latest version 1.0';
 			$response['status'] = 1;
@@ -74,6 +78,9 @@ class Setup extends CI_Controller {
 		if (!$this->db->table_exists('resumegenie')){
 			$this->resumegenie();
 		}
+		if (!$this->db->table_exists('blog')){
+			$this->blog();
+		}
 
 		$response = array(
 			'msg' => 'Your Website is updated to the latest Version 1.0',
@@ -99,7 +106,6 @@ class Setup extends CI_Controller {
 			'role_created' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -111,6 +117,51 @@ class Setup extends CI_Controller {
 		$this->dbforge->add_field($fields);
 		$attributes = array('ENGINE' => 'InnoDB');
 		$this->dbforge->create_table('role', FALSE, $attributes);
+	}
+
+	private function blog(){
+		$fields = array(
+			'blog_id' => array(
+					'type' => 'INT',
+					'constraint' => 5,
+					'unsigned' => TRUE,
+					'auto_increment' => TRUE
+			),
+			'blog_title' => array(
+					'type' => 'VARCHAR',
+					'constraint' => '900',
+			),
+			'blog_content' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '9999',
+				'unique' => TRUE,
+			),
+			'blog_image' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '900',
+			),
+			'user_id' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'views' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '999',
+			),
+			'blog_created' => array(
+					'type' =>'VARCHAR',
+					'constraint' => '100',
+			),
+			'status' => array(
+					'type' => 'INT',
+					'null' => TRUE,
+					'default' => 1,
+			),
+		);
+		$this->dbforge->add_key('blog_id', TRUE);
+		$this->dbforge->add_field($fields);
+		$attributes = array('ENGINE' => 'InnoDB');
+		$this->dbforge->create_table('blog', FALSE, $attributes);
 	}
 
 	private function package_category(){
@@ -139,7 +190,6 @@ class Setup extends CI_Controller {
 			'package_created' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -169,12 +219,10 @@ class Setup extends CI_Controller {
 			'first_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'last_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
@@ -192,17 +240,14 @@ class Setup extends CI_Controller {
 			'user_password' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_dob' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_gender' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_phone' => array(
 				'type' => 'VARCHAR',
@@ -212,17 +257,14 @@ class Setup extends CI_Controller {
 			'user_education' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_job' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'user_created' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -247,7 +289,6 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'amount' => array(
 				'type' => 'VARCHAR',
@@ -279,12 +320,10 @@ class Setup extends CI_Controller {
 			'payment_expire' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'coupon_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -309,27 +348,19 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'coupon_code' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 				'unique' => TRUE,
 			),
-			'coupon_code' => array(
-					'type' =>'VARCHAR',
-					'constraint' => '100',
-					'unique' => TRUE,
-			),
 			'coupon_created' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -354,27 +385,22 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_image' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_category' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'template_created' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'status' => array(
 					'type' => 'INT',
@@ -399,27 +425,23 @@ class Setup extends CI_Controller {
 			'user_id' => array(
 					'type' => 'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'role_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_id' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
 			),
 			'template_category' => array(
 					'type' =>'VARCHAR',
 					'constraint' => '100',
-					'unique' => TRUE,
 			),
 			'resumegenie_created' => array(
 				'type' =>'VARCHAR',
 				'constraint' => '100',
-				'unique' => TRUE,
+				'unique' => FALSE,
 			),
 			'status' => array(
 					'type' => 'INT',
