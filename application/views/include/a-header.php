@@ -171,7 +171,7 @@
                     alt="user"
                     class=""
                   />
-                  <span class="hidden-md-down">Mark Sanders &nbsp;</span>
+                  <span class="hidden-md-down"><?= ucwords($this->session->userdata('first_name')) ?> <?= ucwords($this->session->userdata('last_name')) ?> &nbsp;</span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
               </li>

@@ -397,6 +397,186 @@ $(function(){
         },
     });
   });
+  //Coupon
+  $("body").on('click', '#addCoupon', function(e){
+    e.preventDefault();
+    $('#addCoupon').prop('disabled', true);
+    id = $(this).attr("data-id");
+    $.ajax({
+      url:'generate_coupon',
+      type:"post",
+      data:{
+        userId: id,
+        operation: 'add',
+      },
+      success: function(data){
+          var data = jQuery.parseJSON(data);
+          if(data.status == 1){
+            toastr["success"](data.msg, 'Success!!')
+
+              toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+              }
+              $('#addCoupon').prop('disabled', false);
+          }else{
+              $('#addCoupon').prop('disabled', false);
+              toastr["error"](data.msg, 'Error!!')
+
+              toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": true,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": "300",
+                  "hideDuration": "1000",
+                  "timeOut": "5000",
+                  "extendedTimeOut": "1000",
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+              }
+          }
+      },
+      error: function (jqXHR, exception) {
+          $('#addCoupon').prop('disabled', false);
+          var msg = '';
+          if (jqXHR.status === 0) {
+              msg = 'Not connect.\n Verify Network.';
+          } else if (jqXHR.status == 404) {
+              msg = 'Requested page not found. [404]';
+          } else if (jqXHR.status == 500) {
+              msg = 'Internal Server Error [500].';
+          } else if (exception === 'parsererror') {
+              msg = 'Requested JSON parse failed.';
+          } else if (exception === 'timeout') {
+              msg = 'Time out error.';
+          } else if (exception === 'abort') {
+              msg = 'Ajax request aborted.';
+          } else {
+              msg = 'Uncaught Error.\n' + jqXHR.responseText;
+          }
+          toastr["error"](msg, e)
+
+          toastr.options = {
+              "closeButton": false,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": true,
+              "positionClass": "toast-top-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "5000",
+              "extendedTimeOut": "1000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+          }
+      },
+    });
+  });
+  $("body").on('click', '.deleteCoupon', function(e){
+    var ele = $(this);
+    var id = ele.attr("data-id");
+    var status = ele.data("status");
+    Swal.fire({
+      title: 'Are you sure?',
+      text: (status ==  1) ? "You won't be able to revert this!" : "You are going to retrive this role!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: (status ==  1) ? 'Yes, delete it!': 'Yes, retrive it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url:'generate_coupon',
+          type:"post",
+          data:{
+            couponId: id,
+            operation: 'delete',
+          },
+          success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              (status ==  1) ? ele.closest("tr").find('.deleteCoupon').data("status", 0) : ele.closest("tr").find('.deleteCoupon').data("status", 1);
+              html = (status ==  1) ? '<i class="fa fa-check fa-lg m-2"></i>': '<i class="fa fa-trash-o fa-lg m-2"></i>';
+              ele.closest("tr").find('.deleteCoupon').html(html);
+              Swal.fire(
+                'Deleted!',
+                data.msg,
+                'success'
+              );
+            }else{
+              Swal.fire(
+                'Opps-Error!',
+                data.msg,
+                'error'
+              );
+            }
+          },
+          error: function (jqXHR, exception) {
+            $('.setup').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+          },
+        });
+      }
+    })
+  });
 
   // Datatables
   var table = $('#example').DataTable();

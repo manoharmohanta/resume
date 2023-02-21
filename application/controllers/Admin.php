@@ -64,11 +64,84 @@ class Admin extends CI_Controller {
 	}
 	public function coupon(){
 		if($this->islogin()){
+			$this->db->select('coupon.*,user.user_email,user.user_phone,user.first_name, user.user_name, user.last_name');
+			$this->db->join('user', 'user.user_id=coupon.user_id');
+			$dbResult = $this->db->get('coupon')->result_array();
+			// print_r($dbResult); exit();
+			$details = array(
+				'page_name' => 'Coupons',
+				'db_result' => $dbResult,
+			);
 			$this->load->view('include/a-header');
-			$this->load->view('admin/blank');
+			$this->load->view('admin/coupon',$details);
 			$this->load->view('include/a-footer');
 		}
 	}
+	public function generate_coupon(){
+		$user_id = strtolower($this->security->xss_clean($this->input->post('userId')));
+		$coupon_id = strtolower($this->security->xss_clean($this->input->post('couponId')));
+		$operation = $this->security->xss_clean($this->input->post('operation'));
+
+		if($operation == 'add'){
+			$this->db->where('user_id', $user_id);
+			$this->db->where('status', 1);
+			$blog = $this->db->get('coupon');
+			if($blog->num_rows() >0 && empty($coupon_id)){
+				$db_details = $blog->row_array();
+				$result= array(
+					'data' => $db_details['coupon_code'],
+					'msg'=> 'This user already has a coupon code which is '.$db_details['coupon_code'],
+					'status' => 0,
+				);
+			}else{
+				$data = array(
+					'coupon_code' => $this->generate_coupon_code(),
+					'user_id' => ($this->session->userdata('user_id')),
+					'coupon_created' => date('Y-m-d'),
+				);
+				$this->db->insert('coupon',$data);
+				$result= array(
+					'url' => base_url('admin/coupon'),
+					'msg'=> 'Coupon has Generated Successfully which is '.$data['coupon_code'],
+					'status' => 1,
+				);
+			}
+		}elseif($operation == 'delete'){
+			if(empty($coupon_id)){
+				$result= array(
+					'msg'=> 'Please try Again',
+					'status' => 0,
+				);
+			}else{
+				$this->db->where('coupon_id', $coupon_id);
+				$blog = $this->db->get('coupon')->row_array();
+				if($blog['status'] == 1){
+					$this->db->set('status', 0);
+					$this->db->where('coupon_id', $coupon_id);
+					$this->db->update('coupon');
+					$result= array(
+						'msg'=> 'Coupon has Deleted Successfully',
+						'status' => 1,
+					);
+				}else{
+					$this->db->set('status', 1);
+					$this->db->where('coupon_id', $coupon_id);
+					$this->db->update('coupon');
+					$result= array(
+						'msg'=> 'Coupon has Retrived Successfully',
+						'status' => 1,
+					);
+				}
+			}
+		}else{
+			$result = array(
+				'msg' => 'Please provide correct opertion code',
+				'status' => 0,
+			);
+		}
+		echo json_encode($result); exit();
+	}
+	
 	public function package(){
 		if($this->islogin()){
 			$this->load->view('include/a-header');
@@ -343,11 +416,15 @@ class Admin extends CI_Controller {
 			echo json_encode($result); exit();
 		}
 	}
-	
+
 	public function profile(){
 		if($this->islogin()){
+			$details = array(
+				'page_name' => 'My Profile',
+				// 'db_results' => $roles,
+			);
 			$this->load->view('include/a-header');
-			$this->load->view('admin/blank');
+			$this->load->view('admin/profile',$details);
 			$this->load->view('include/a-footer');
 		}
 	}
@@ -418,6 +495,28 @@ class Admin extends CI_Controller {
 			$result = array('upload_data' => $this->upload->data(), 'status' => 1);
 		}
 		return $result;
+	}
+
+	private function generate_coupon_code() {
+		
+		$prefix = "RG";
+		$characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$code = $prefix;
+		for ($i = 0; $i < 4; $i++) {
+			$code .= $characters[rand(0, strlen($characters) - 1)];
+		}
+		
+		$this->db->where('status',1);
+		$this->db->where('coupon_code', $code);
+		$query = $this->db->get('coupon');
+		
+		if ($query->num_rows() > 0) {
+			// Coupon code already exists, generate a different one
+			return $this->generate_coupon_code();
+		} else {
+			// Coupon code is unique, return it
+			return $code;
+		}
 	}
 	
 }
