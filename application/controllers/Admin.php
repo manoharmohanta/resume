@@ -235,10 +235,6 @@ class Admin extends CI_Controller {
 		}
 	}
 	public function submit_blog(){
-<<<<<<< HEAD
-		//preg_replace('/class=".*?"/', '',strip_tags($html,'<span><p><a><h1><h2><h3><h4><h5><h6><table><tr><td><tbody>'))
-	}
-=======
 		if($this->islogin()){
 			$blog_tilte = strtolower($this->security->xss_clean($this->input->post('blogName')));
 			$blog_id = $this->security->xss_clean($this->input->post('blogId'));
@@ -348,7 +344,6 @@ class Admin extends CI_Controller {
 		}
 	}
 	
->>>>>>> f06253bf8975e856768b43f0a4565597c0892846
 	public function profile(){
 		if($this->islogin()){
 			$this->load->view('include/a-header');
