@@ -1,91 +1,50 @@
 $(function(){
   let editor;
   $('.addQualification').click(function(){
-    $('.qualification').append(`<div class="card mb-1">
-    <span class="position-absolute top-0 end-0 close" data-effect="fadeOut"><i class="bi bi-x-circle"></i></span>
-    <div class="card-body">
+    $('.qualification').append(`<br><div class="card mt-1">
+      <div class="d-flex justify-content-between align-items-center"><span>Add New Education</span><span class="border px-3 p-1 close"><i class="fa fa-times"></i>&nbsp;Delete</span></div><br>
+      <div class="col-md-12"><label class="labels">University Name</label><input type="text" class="form-control" placeholder="university name" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">University Location</label><input type="text" class="form-control" placeholder="university name" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">Degree Name</label><input type="text" class="form-control" placeholder="degree name" value=""></div><br>
       <div class="row">
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Joining Year</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="YYYY">
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Completion Year</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="YYYY">
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Location</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="New York City, NY">
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Degree Awarded</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bachelor of Technology">
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">University / College Name</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bachelor of Technology">
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Summary</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        </div>
+        <div class="col-md-6"><label class="labels">From Date</label><input type="text" class="form-control" placeholder="from date" value=""></div>
+        <div class="col-md-6"><label class="labels">To Date</label><input type="text" class="form-control" placeholder="to date" value=""></div>
       </div>
-    </div>
   </div>`);
   });
   $('.addJob').click(function(){
-    $('.job').append(`<div class="card mb-1">
-    <span class="position-absolute top-0 end-0 close" data-effect="fadeOut"><i class="bi bi-x-circle"></i></span>
-    <div class="card-body">
+    $('.job').append(`<br><div class="card mt-1">
+    <div class="d-flex justify-content-between align-items-center"><span>Add New Experience</span><span class="border px-3 p-1 close"><i class="fa fa-times"></i>&nbsp;Delete</span></div><br>
+      <div class="col-md-12"><label class="labels">Organization Name</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">Organization Location</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">Designation Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div><br>
       <div class="row">
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Joining Year</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="YYYY">
+        <div class="col-md-6"><label class="labels">From Date</label><input type="text" class="form-control" placeholder="from date" value=""></div>
+        <div class="col-md-6"><label class="labels">To Date</label><input type="text" class="form-control" placeholder="to date" value=""></div>
+      </div>
+  </div>`);
+  });
+  $('.addSkill').click(function(){
+    $('.skill').append(`<div class="card">
+    <div class="row">
+      <div class="col-md-6"> <label class="form-label">New Skill Add</label></div>
+      <div class="col-md-6 text-end"><span class="close" data-effect="fadeOut"><i class="fa fa-times"></i></span></div>
+      <div class="col-md-6"><label class="labels">Skill Name</label><input type="text" class="form-control" placeholder="from date" value=""></div>
+      <div class="col-md-6">
+        <label class="form-label">Skill Percentage</label>
+        <div class="row">
+          <div class="col-sm-4">
+            <span>0</span>
+          </div>
+          <div class="col-sm-4 text-center">
+            <span>50</span>
+          </div>
+          <div class="col-sm-4 text-end">
+            <span>100</span>
           </div>
         </div>
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Completion Year</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="YYYY">
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Location</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="New York City, NY">
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Degree Awarded</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bachelor of Technology">
-          </div>
-        </div>
-        <div class="col-8">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">University / College Name</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bachelor of Technology">
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Summary</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        </div>
+        <input type="range" class="form-range" min="0" max="100" step="1" id="range-slider" value="0">
+        <span id="range-value"></span>
       </div>
     </div>
   </div>`);
@@ -705,6 +664,33 @@ $(function(){
     });
   });
 
+  //Profile Image Update on Click
+  const profileImage = document.getElementById("profile-image");
+  const imagePreview = document.querySelector(".rounded-circle");
+
+  profileImage.addEventListener("change", function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener("load", function() {
+        imagePreview.src = this.result;
+      });
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  const rangeSlider = document.getElementById("range-slider");
+  const rangeValue = document.getElementById("range-value");
+
+  rangeSlider.addEventListener("input", () => {
+    rangeValue.innerText = rangeSlider.value + '%';
+  });
+
+  $("body").on('change mousemove', '#range-slider', function(e){
+    const rangeSlider = $(this).val();
+    console.log(rangeSlider);
+    $(this).next("#range-value").html(rangeSlider + '%');
+  });
 
 });
 

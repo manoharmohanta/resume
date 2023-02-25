@@ -419,9 +419,13 @@ class Admin extends CI_Controller {
 
 	public function profile(){
 		if($this->islogin()){
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->where('status', 1);
+			$this->db->limit(1);
+			$roles = $this->db->get('user')->row_array();
 			$details = array(
 				'page_name' => 'My Profile',
-				// 'db_results' => $roles,
+				'db_results' => $roles,
 			);
 			$this->load->view('include/a-header');
 			$this->load->view('admin/profile',$details);

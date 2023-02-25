@@ -254,6 +254,36 @@ class Setup extends CI_Controller {
 				'constraint' => '100',
 				'unique' => TRUE,
 			),
+			'user_address_1' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'user_address_2' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'user_state' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'user_city' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'user_pincode' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
+			'user_country' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
 			'user_education' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
@@ -263,6 +293,10 @@ class Setup extends CI_Controller {
 				'constraint' => '100',
 			),
 			'user_created' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'user_last_login' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 			),
