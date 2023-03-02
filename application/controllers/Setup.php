@@ -279,6 +279,11 @@ class Setup extends CI_Controller {
 				'constraint' => '100',
 				'unique' => TRUE,
 			),
+			'user_image' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+				'unique' => TRUE,
+			),
 			'user_country' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
@@ -310,6 +315,138 @@ class Setup extends CI_Controller {
 		$this->dbforge->add_field($fields);
 		$attributes = array('ENGINE' => 'InnoDB');
 		$this->dbforge->create_table('user', FALSE, $attributes);
+	}
+
+	private function education(){
+		$fields = array(
+			'education_id' => array(
+					'type' => 'INT',
+					'constraint' => 5,
+					'unsigned' => TRUE,
+					'auto_increment' => TRUE
+			),
+			'user_id' => array(
+					'type' => 'VARCHAR',
+					'constraint' => '100',
+			),
+			'university_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'university_location' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'degree_name' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'education_from_date' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'education_to_date' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'education_created' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'status' => array(
+					'type' => 'INT',
+					'null' => TRUE,
+					'default' => 1,
+			),
+		);
+		$this->dbforge->add_key('education_id', TRUE);
+		$this->dbforge->add_field($fields);
+		$attributes = array('ENGINE' => 'InnoDB');
+		$this->dbforge->create_table('education', FALSE, $attributes);
+	}
+
+	private function organization(){
+		$fields = array(
+			'organization_id' => array(
+					'type' => 'INT',
+					'constraint' => 5,
+					'unsigned' => TRUE,
+					'auto_increment' => TRUE
+			),
+			'user_id' => array(
+					'type' => 'VARCHAR',
+					'constraint' => '100',
+			),
+			'organization_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'organization_location' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'organization_designation' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'organization_from_date' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'organization_to_date' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'organization_created' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'status' => array(
+					'type' => 'INT',
+					'null' => TRUE,
+					'default' => 1,
+			),
+		);
+		$this->dbforge->add_key('organization_id', TRUE);
+		$this->dbforge->add_field($fields);
+		$attributes = array('ENGINE' => 'InnoDB');
+		$this->dbforge->create_table('organization', FALSE, $attributes);
+	}
+
+	private function skill(){
+		$fields = array(
+			'skill_id' => array(
+					'type' => 'INT',
+					'constraint' => 5,
+					'unsigned' => TRUE,
+					'auto_increment' => TRUE
+			),
+			'user_id' => array(
+					'type' => 'VARCHAR',
+					'constraint' => '100',
+			),
+			'skill_name' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'skill_percentage' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '100',
+			),
+			'skill_created' => array(
+				'type' =>'VARCHAR',
+				'constraint' => '100',
+			),
+			'status' => array(
+					'type' => 'INT',
+					'null' => TRUE,
+					'default' => 1,
+			),
+		);
+		$this->dbforge->add_key('skill_id', TRUE);
+		$this->dbforge->add_field($fields);
+		$attributes = array('ENGINE' => 'InnoDB');
+		$this->dbforge->create_table('skill', FALSE, $attributes);
 	}
 
 	private function payment(){

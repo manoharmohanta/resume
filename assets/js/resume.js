@@ -3,24 +3,24 @@ $(function(){
   $('.addQualification').click(function(){
     $('.qualification').append(`<br><div class="card mt-1">
       <div class="d-flex justify-content-between align-items-center"><span>Add New Education</span><span class="border px-3 p-1 close"><i class="fa fa-times"></i>&nbsp;Delete</span></div><br>
-      <div class="col-md-12"><label class="labels">University Name</label><input type="text" class="form-control" placeholder="university name" value=""></div> <br>
-      <div class="col-md-12"><label class="labels">University Location</label><input type="text" class="form-control" placeholder="university name" value=""></div> <br>
-      <div class="col-md-12"><label class="labels">Degree Name</label><input type="text" class="form-control" placeholder="degree name" value=""></div><br>
+      <div class="col-md-12"><label class="labels">University Name</label><input type="text" name="university_name[]" class="form-control" placeholder="university name" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">University Location</label><input type="text" name="university_location[]" class="form-control" placeholder="university name" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">Degree Name</label><input type="text" class="form-control" name="degree_name[]" placeholder="degree name" value=""></div><br>
       <div class="row">
-        <div class="col-md-6"><label class="labels">From Date</label><input type="text" class="form-control" placeholder="from date" value=""></div>
-        <div class="col-md-6"><label class="labels">To Date</label><input type="text" class="form-control" placeholder="to date" value=""></div>
+        <div class="col-md-6"><label class="labels">From Date</label><input type="text" name="university_from_date[]" class="form-control" placeholder="from date" value=""></div>
+        <div class="col-md-6"><label class="labels">To Date</label><input type="text" name="university_to_date[]" class="form-control" placeholder="to date" value=""></div>
       </div>
   </div>`);
   });
   $('.addJob').click(function(){
     $('.job').append(`<br><div class="card mt-1">
     <div class="d-flex justify-content-between align-items-center"><span>Add New Experience</span><span class="border px-3 p-1 close"><i class="fa fa-times"></i>&nbsp;Delete</span></div><br>
-      <div class="col-md-12"><label class="labels">Organization Name</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-      <div class="col-md-12"><label class="labels">Organization Location</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-      <div class="col-md-12"><label class="labels">Designation Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div><br>
+      <div class="col-md-12"><label class="labels">Organization Name</label><input type="text" name="organization_name[]" class="form-control" placeholder="experience" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">Organization Location</label><input type="text" name="organization_location[]" class="form-control" placeholder="experience" value=""></div> <br>
+      <div class="col-md-12"><label class="labels">Designation Details</label><input type="text" name="organization_designation[]" class="form-control" placeholder="additional details" value=""></div><br>
       <div class="row">
-        <div class="col-md-6"><label class="labels">From Date</label><input type="text" class="form-control" placeholder="from date" value=""></div>
-        <div class="col-md-6"><label class="labels">To Date</label><input type="text" class="form-control" placeholder="to date" value=""></div>
+        <div class="col-md-6"><label class="labels">From Date</label><input type="text" name="organization_from_date[]" class="form-control" placeholder="from date" value=""></div>
+        <div class="col-md-6"><label class="labels">To Date</label><input type="text" name="organization_to_date[]" class="form-control" placeholder="to date" value=""></div>
       </div>
   </div>`);
   });
@@ -678,18 +678,112 @@ $(function(){
       reader.readAsDataURL(file);
     }
   });
-  
   const rangeSlider = document.getElementById("range-slider");
   const rangeValue = document.getElementById("range-value");
-
   rangeSlider.addEventListener("input", () => {
     rangeValue.innerText = rangeSlider.value + '%';
   });
-
   $("body").on('change mousemove', '#range-slider', function(e){
     const rangeSlider = $(this).val();
     console.log(rangeSlider);
     $(this).next("#range-value").html(rangeSlider + '%');
+  });
+  $("body").on('submit', '#submitProfile', function(e){
+    e.preventDefault();
+    $('.submitButton').prop('disabled', true); 
+    $.ajax({
+        url:'submit_profile',
+        type:"post",
+        data:new FormData(this),
+        processData:false,
+        contentType:false,
+        cache:false,
+        async:false,
+        success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              toastr["success"](data.msg, 'Success!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#staticBackdrop').modal('hide');
+            }else{
+                $('.submitButton').prop('disabled', false);
+                toastr["error"](data.msg, 'Error!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        },
+        error: function (jqXHR, exception) {
+            $('.submitButton').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
   });
 
 });

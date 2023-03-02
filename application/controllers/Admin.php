@@ -432,6 +432,358 @@ class Admin extends CI_Controller {
 			$this->load->view('include/a-footer');
 		}
 	}
+	public function submit_profile(){
+		if($this->islogin()){
+			$first_name = strtolower($this->security->xss_clean($this->input->post('first_name')));
+			$last_name = $this->security->xss_clean($this->input->post('last_name'));
+			$user_phone = ($this->security->xss_clean($this->input->post('user_phone')));
+			$user_gender = $this->security->xss_clean($this->input->post('user_gender'));
+			$user_address_1 = $this->security->xss_clean($this->input->post('user_address_1'));
+			$user_address_2 = $this->security->xss_clean($this->input->post('user_address_2'));
+			$user_state = $this->security->xss_clean($this->input->post('user_state'));
+			$user_city = $this->security->xss_clean($this->input->post('user_city'));
+			// $skill_name = $this->security->xss_clean($this->input->post('skill_name'));
+			// $skill_percentage = $this->security->xss_clean($this->input->post('skill_percentage'));
+			// $university_name = $this->security->xss_clean($this->input->post('university_name'));
+			// $university_location = $this->security->xss_clean($this->input->post('university_location'));
+			// $degree_name = $this->security->xss_clean($this->input->post('degree_name'));
+			// $university_from_date = $this->security->xss_clean($this->input->post('university_from_date'));
+			// $university_to_date = $this->security->xss_clean($this->input->post('university_to_date'));
+			// $organization_name = $this->security->xss_clean($this->input->post('organization_name'));
+			// $organization_location = $this->security->xss_clean($this->input->post('organization_location'));
+			// $organization_designation = $this->security->xss_clean($this->input->post('organization_designation'));
+			// $organization_from_date = $this->security->xss_clean($this->input->post('organization_from_date'));
+			// $organization_to_date = $this->security->xss_clean($this->input->post('organization_to_date'));
+			$operation = $this->security->xss_clean($this->input->post('operation'));
+
+			if($operation == 'add'){
+				$user_id = $this->session->userdata('user_id');
+				if(!empty($user_id)){
+					if(!empty($first_name)){
+						$data = array(
+							'first_name' => strtolower($first_name),
+							'last_name' => strtolower($last_name),
+							'user_phone' => strtolower($user_phone),
+							'user_gender' => strtolower($user_gender),
+							'user_address_1' => strtolower($user_address_1),
+							'user_address_2' => strtolower($user_address_2),
+							'user_state' => strtolower($user_state),
+							'user_city' => strtolower($user_city),
+							'user_created' => date('Y-m-d'),
+						);
+						$image_details = $this->upload('profile-image');
+						if($image_details['status'] == 1){
+							$data['user_image'] = $image_details['upload_data']['raw_name'].$image_details['upload_data']['file_ext'];
+						}else{
+						}
+						$this->db->where('user_id', $user_id);
+						$this->db->update('user',$data);
+						$result= array(
+							'msg'=> 'User details Updated Successfully',
+							'status' => 1,
+						);
+					}else{
+						$result= array(
+							'msg'=> 'Enter Your Details',
+							'status' => 0,
+						);
+					}				
+				}else{
+					$result= array(
+						'msg'=> 'Please Logout and try to login again',
+						'status' => 0,
+					);
+				}
+			}elseif($operation == 'delete'){
+				if(empty($blog_id)){
+					$result= array(
+						'msg'=> 'Please try Again',
+						'status' => 0,
+					);
+				}else{
+					$this->db->where('blog_id', $blog_id);
+					$blog = $this->db->get('blog')->row_array();
+					if($blog['status'] == 1){
+						$this->db->set('status', 0);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Blog has Deleted Successfully',
+							'status' => 1,
+						);
+					}else{
+						$this->db->set('status', 1);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Blog has Retrived Successfully',
+							'status' => 1,
+						);
+					}
+				}
+			}else{
+				$result = array(
+					'msg' => 'Please provide correct opertion code',
+					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
+	public function submit_education(){
+		if($this->islogin()){
+			$university_name = $this->security->xss_clean($this->input->post('university_name'));
+			$university_location = $this->security->xss_clean($this->input->post('university_location'));
+			$degree_name = $this->security->xss_clean($this->input->post('degree_name'));
+			$university_from_date = $this->security->xss_clean($this->input->post('university_from_date'));
+			$university_to_date = $this->security->xss_clean($this->input->post('university_to_date'));
+
+			// $skill_name = $this->security->xss_clean($this->input->post('skill_name'));
+			// $skill_percentage = $this->security->xss_clean($this->input->post('skill_percentage'));
+			// $organization_name = $this->security->xss_clean($this->input->post('organization_name'));
+			// $organization_location = $this->security->xss_clean($this->input->post('organization_location'));
+			// $organization_designation = $this->security->xss_clean($this->input->post('organization_designation'));
+			// $organization_from_date = $this->security->xss_clean($this->input->post('organization_from_date'));
+			// $organization_to_date = $this->security->xss_clean($this->input->post('organization_to_date'));
+			
+			$operation = $this->security->xss_clean($this->input->post('operation'));
+
+			if($operation == 'add'){
+				$user_id = $this->session->userdata('user_id');
+				if(!empty($user_id)){
+					if(!empty($first_name)){
+						$data = array(
+							'university_name' => strtolower($university_name),
+							'university_location' => strtolower($university_location),
+							'university_from_date' => strtolower($university_from_date),
+							'university_to_date' => strtolower($university_to_date),
+							// 'user_address_1' => strtolower($user_address_1),
+							// 'user_address_2' => strtolower($user_address_2),
+							// 'user_state' => strtolower($user_state),
+							// 'user_city' => strtolower($user_city),
+							'university_created' => date('Y-m-d'),
+						);
+						$image_details = $this->upload('profile-image');
+						if($image_details['status'] == 1){
+							$data['user_image'] = $image_details['upload_data']['raw_name'].$image_details['upload_data']['file_ext'];
+						}else{
+						}
+						$this->db->where('user_id', $user_id);
+						$this->db->update('user',$data);
+						$result= array(
+							'msg'=> 'User details Updated Successfully',
+							'status' => 1,
+						);
+					}else{
+						$result= array(
+							'msg'=> 'Enter Your Details',
+							'status' => 0,
+						);
+					}				
+				}else{
+					$result= array(
+						'msg'=> 'Please Logout and try to login again',
+						'status' => 0,
+					);
+				}
+			}elseif($operation == 'delete'){
+				if(empty($blog_id)){
+					$result= array(
+						'msg'=> 'Please try Again',
+						'status' => 0,
+					);
+				}else{
+					$this->db->where('blog_id', $blog_id);
+					$blog = $this->db->get('blog')->row_array();
+					if($blog['status'] == 1){
+						$this->db->set('status', 0);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Blog has Deleted Successfully',
+							'status' => 1,
+						);
+					}else{
+						$this->db->set('status', 1);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Blog has Retrived Successfully',
+							'status' => 1,
+						);
+					}
+				}
+			}else{
+				$result = array(
+					'msg' => 'Please provide correct opertion code',
+					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
+	public function submit_skill(){
+		if($this->islogin()){
+			$skill_name = $this->security->xss_clean($this->input->post('skill_name'));
+			$skill_percentage = $this->security->xss_clean($this->input->post('skill_percentage'));
+			// $organization_name = $this->security->xss_clean($this->input->post('organization_name'));
+			// $organization_location = $this->security->xss_clean($this->input->post('organization_location'));
+			// $organization_designation = $this->security->xss_clean($this->input->post('organization_designation'));
+			// $organization_from_date = $this->security->xss_clean($this->input->post('organization_from_date'));
+			// $organization_to_date = $this->security->xss_clean($this->input->post('organization_to_date'));
+			
+			$operation = $this->security->xss_clean($this->input->post('operation'));
+
+			if($operation == 'add'){
+				$user_id = $this->session->userdata('user_id');
+				if(!empty($user_id)){
+					if(!empty($first_name)){
+						$data = array(
+							'skill_name' => strtolower($skill_name),
+							'skill_percentage' => strtolower($skill_percentage),
+							// 'user_phone' => strtolower($user_phone),
+							// 'user_gender' => strtolower($user_gender),
+							// 'user_address_1' => strtolower($user_address_1),
+							// 'user_address_2' => strtolower($user_address_2),
+							// 'user_state' => strtolower($user_state),
+							// 'user_city' => strtolower($user_city),
+							'skill_created' => date('Y-m-d'),
+						);
+						
+						$this->db->where('user_id', $user_id);
+						$this->db->update('user',$data);
+						$result= array(
+							'msg'=> 'User details Updated Successfully',
+							'status' => 1,
+						);
+					}else{
+						$result= array(
+							'msg'=> 'Enter Your Details',
+							'status' => 0,
+						);
+					}				
+				}else{
+					$result= array(
+						'msg'=> 'Please Logout and try to login again',
+						'status' => 0,
+					);
+				}
+			}elseif($operation == 'delete'){
+				if(empty($blog_id)){
+					$result= array(
+						'msg'=> 'Please try Again',
+						'status' => 0,
+					);
+				}else{
+					$this->db->where('blog_id', $blog_id);
+					$blog = $this->db->get('blog')->row_array();
+					if($blog['status'] == 1){
+						$this->db->set('status', 0);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Blog has Deleted Successfully',
+							'status' => 1,
+						);
+					}else{
+						$this->db->set('status', 1);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Blog has Retrived Successfully',
+							'status' => 1,
+						);
+					}
+				}
+			}else{
+				$result = array(
+					'msg' => 'Please provide correct opertion code',
+					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
+
+	public function submit_experience(){
+		if($this->islogin()){
+			$organization_name = $this->security->xss_clean($this->input->post('organization_name'));
+			$organization_location = $this->security->xss_clean($this->input->post('organization_location'));
+			$organization_designation = $this->security->xss_clean($this->input->post('organization_designation'));
+			$organization_from_date = $this->security->xss_clean($this->input->post('organization_from_date'));
+			$organization_to_date = $this->security->xss_clean($this->input->post('organization_to_date'));
+			$operation = $this->security->xss_clean($this->input->post('operation'));
+
+			if($operation == 'add'){
+				$user_id = $this->session->userdata('user_id');
+				if(!empty($user_id)){
+					if(!empty($first_name)){
+						$data = array(
+							'organization_name' => strtolower($organization_name),
+							'organization_location' => strtolower($organization_location),
+							'organization_designation' => strtolower($organization_designation),
+							'organization_from_date' => strtolower($organization_from_date),
+							'organization_to_date' => strtolower($organization_to_date),
+							// 'user_address_2' => strtolower($user_address_2),
+							// 'user_state' => strtolower($user_state),
+							// 'user_city' => strtolower($user_city),
+							'organization_created' => date('Y-m-d'),
+						);
+						
+						$this->db->where('user_id', $user_id);
+						$this->db->update('user',$data);
+						$result= array(
+							'msg'=> 'Experience details Updated Successfully',
+							'status' => 1,
+						);
+					}else{
+						$result= array(
+							'msg'=> 'Enter Your Details',
+							'status' => 0,
+						);
+					}				
+				}else{
+					$result= array(
+						'msg'=> 'Please Logout and try to login again',
+						'status' => 0,
+					);
+				}
+			}elseif($operation == 'delete'){
+				if(empty($blog_id)){
+					$result= array(
+						'msg'=> 'Please try Again',
+						'status' => 0,
+					);
+				}else{
+					$this->db->where('blog_id', $blog_id);
+					$blog = $this->db->get('blog')->row_array();
+					if($blog['status'] == 1){
+						$this->db->set('status', 0);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Experience has Deleted Successfully',
+							'status' => 1,
+						);
+					}else{
+						$this->db->set('status', 1);
+						$this->db->where('blog_id', $blog_id);
+						$this->db->update('blog');
+						$result= array(
+							'msg'=> 'Experience has Retrived Successfully',
+							'status' => 1,
+						);
+					}
+				}
+			}else{
+				$result = array(
+					'msg' => 'Please provide correct opertion code',
+					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
 
 	//My functions
     function my_simple_crypt( $string, $action = 'e' ) {

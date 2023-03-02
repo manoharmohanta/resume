@@ -53,4 +53,13 @@ class Resume extends CI_Controller {
 	public function create_statement_of_purpose(){
 		$this->load->view('website/forgot');
 	}
+
+	public function blog_details(){
+		$this->db->join('user', 'user.user_id=blog.user_id');
+		$this->db->limit(1);
+		$response['data'] = $this->db->get('blog')->row_array();
+		$this->load->view('include/header');
+		$this->load->view('website/blog-details',$response);
+		$this->load->view('include/footer');
+	}
 }
