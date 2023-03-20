@@ -187,8 +187,8 @@
                         <div class="col-md-5">
                           <div class="p-3">
                               <div class="d-flex justify-content-between align-items-center experience"><span>Edit Skils</span></div><br>
-                              <div class="row skill">
-                                <form class="profile" id="submitSkill" role="form" novalidate="novalidate">
+                              <form class="profile" id="submitSkill" role="form" novalidate="novalidate">
+                                <div class="row skill">
                                   <div class="col-md-6"><label class="labels">Skill Name</label><input type="text" name="skill_name" class="form-control" placeholder="sikll" value=""></div>
                                   <div class="col-md-6">
                                     <label class="form-label">Skill Percentage</label>
@@ -206,10 +206,11 @@
                                     <input type="range" name="skill_percentage" class="form-range" min="0" max="100" step="1" id="range-slider" value="0">
                                     <span id="range-value"></span>
                                   </div>
-                                </form>
-                              </div>
+                                </div>
+                                <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitButton" type="submit">Save Skills</button></div>
+                              </form>
                           </div>
-                          <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitButton" type="submit">Save Skills</button></div>
+                          
                         </div>
                         <div class="col-md-7">
                           <table class="table">
@@ -226,7 +227,7 @@
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
-                                <td><button class="btn btn-sm btn-primary"><span class="badge bg-primary">Edit</span></button><button class="btn btn-sm btn-danger ms-2"><span class="badge bg-danger">Delete</span></button></td>
+                                <td><button class="btn btn-sm btn-primary editSkill"><span class="badge bg-primary">Edit</span></button><button class="btn btn-sm btn-danger ms-2"><span class="badge bg-danger">Delete</span></button></td>
                               </tr>
                             </tbody>
                           </table>

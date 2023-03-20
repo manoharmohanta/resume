@@ -1,6 +1,6 @@
 $(function(){
   let editor;
-  $('.addQualification').click(function(){
+  $('.editQualification').click(function(){
     $('.qualification').append(`<br><div class="card mt-1">
       <div class="d-flex justify-content-between align-items-center"><span>Add New Education</span><span class="border px-3 p-1 close"><i class="fa fa-times"></i>&nbsp;Delete</span></div><br>
       <div class="col-md-12"><label class="labels">University Name</label><input type="text" name="university_name[]" class="form-control" placeholder="university name" value=""></div> <br>
@@ -12,7 +12,7 @@ $(function(){
       </div>
   </div>`);
   });
-  $('.addJob').click(function(){
+  $('.editJob').click(function(){
     $('.job').append(`<br><div class="card mt-1">
     <div class="d-flex justify-content-between align-items-center"><span>Add New Experience</span><span class="border px-3 p-1 close"><i class="fa fa-times"></i>&nbsp;Delete</span></div><br>
       <div class="col-md-12"><label class="labels">Organization Name</label><input type="text" name="organization_name[]" class="form-control" placeholder="experience" value=""></div> <br>
@@ -24,30 +24,40 @@ $(function(){
       </div>
   </div>`);
   });
-  $('.addSkill').click(function(){
-    $('.skill').append(`<div class="card">
-    <div class="row">
-      <div class="col-md-6"> <label class="form-label">New Skill Add</label></div>
-      <div class="col-md-6 text-end"><span class="close" data-effect="fadeOut"><i class="fa fa-times"></i></span></div>
-      <div class="col-md-6"><label class="labels">Skill Name</label><input type="text" class="form-control" placeholder="from date" value=""></div>
-      <div class="col-md-6">
-        <label class="form-label">Skill Percentage</label>
+  $('.editSkill').click(function(){
+    html = `<form class="login" id="submitSkill" role="form" novalidate="novalidate">
+      <div class="card">
         <div class="row">
-          <div class="col-sm-4">
-            <span>0</span>
-          </div>
-          <div class="col-sm-4 text-center">
-            <span>50</span>
-          </div>
-          <div class="col-sm-4 text-end">
-            <span>100</span>
+          <div class="col-md-6"> <label class="form-label">New Skill Add</label></div>
+          <div class="col-md-6 text-end"><span class="close" data-effect="fadeOut"><i class="fa fa-times"></i></span></div>
+          <div class="col-md-6"><label class="labels">Skill Name</label><input type="text" class="form-control" placeholder="from date" value=""></div>
+          <div class="col-md-6">
+            <label class="form-label">Skill Percentage</label>
+            <div class="row">
+              <div class="col-sm-4">
+                <span>0</span>
+              </div>
+              <div class="col-sm-4 text-center">
+                <span>50</span>
+              </div>
+              <div class="col-sm-4 text-end">
+                <span>100</span>
+              </div>
+            </div>
+            <input type="range" class="form-range" min="0" max="100" step="1" id="range-slider" value="0">
+            <span id="range-value"></span>
           </div>
         </div>
-        <input type="range" class="form-range" min="0" max="100" step="1" id="range-slider" value="0">
-        <span id="range-value"></span>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-info mt-4 submitButton" type="submit">Edit Skill</button>
+        </div>
       </div>
-    </div>
-  </div>`);
+    </form>`;
+    $('.modal-title').html('Edit Skill');
+    $('.modal-body').html(html);
+    $('.modal-footer').hide();
+    $('#staticBackdrop').modal('show');
+    $('.editSkill').prop('disabled', false);
   });
   $("body").on('click', '.close', function(e){
     e.preventDefault();
