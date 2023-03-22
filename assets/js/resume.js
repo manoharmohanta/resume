@@ -795,6 +795,725 @@ $(function(){
         },
     });
   });
+  $("body").on('submit', '#submitEducation', function(e){
+    e.preventDefault();
+    $('.submitButton').prop('disabled', true); 
+    $.ajax({
+        url:'submit_education',
+        type:"post",
+        data:new FormData(this),
+        processData:false,
+        contentType:false,
+        cache:false,
+        async:false,
+        success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              toastr["success"](data.msg, 'Success!!')
 
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#staticBackdrop').modal('hide');
+            }else{
+                $('.submitButton').prop('disabled', false);
+                toastr["error"](data.msg, 'Error!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        },
+        error: function (jqXHR, exception) {
+            $('.submitButton').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+  $("body").on('click', '.editEducation', function(e){
+    var ele = $(this); $('.editEducation').prop('disabled', true);
+    var id = ele.attr("data-id");    var db = ele.attr("data-db");
+    $.ajax({
+        url:'get',
+        type:"post",
+        data:{
+            id: id,
+            db: db,
+        },
+        success: function(data){
+        var data = jQuery.parseJSON(data);
+        if(data.status == 1){
+            html = `<form class="profile" id="submitEducation" role="form" novalidate="novalidate">
+            <input type="text" value="add" name="operation" hidden>
+            <input type="text" value="${id}" name="id" hidden>
+            <div class="col-md-12"><label class="labels">University Name</label><input type="text" class="form-control" name="university_name" placeholder="university name" value="${data.data.university_name}"></div> <br>
+            <div class="col-md-12"><label class="labels">University Location</label><input type="text" class="form-control" name="university_location" placeholder="university location" value="${data.data.university_location}"></div> <br>
+            <div class="col-md-12"><label class="labels">Degree Name</label><input type="text" class="form-control" name="degree_name" placeholder="degree name" value="${data.data.degree_name}"></div><br>
+            <div class="row">
+              <div class="col-md-6"><label class="labels">From Date</label><input type="text" class="form-control" name="university_from_date" placeholder="from date" value="${data.data.education_from_date}"></div>
+              <div class="col-md-6"><label class="labels">To Date</label><input type="text" class="form-control" name="university_to_date" placeholder="to date" value="${data.data.education_to_date}"></div>
+            </div>
+            <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitEducation" type="submit">Save Education Details</button></div>
+          </form>`;
+          $('.modal-title').html(`Edit ${data.data.university_name} Details`);
+          $('.modal-body').html(html);
+          $('.modal-footer').hide();
+          $('#staticBackdrop').modal('show');
+          $('.editEducation').prop('disabled', false);
+        }else{
+            $('.editEducation').prop('disabled', false);
+            Swal.fire(
+                'Opps-Error!',
+                data.msg,
+                'error'
+            );
+        }
+        },
+        error: function (jqXHR, exception) {
+            $('.editEducation').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+  $("body").on('submit', '#submitJob', function(e){
+    e.preventDefault();
+    $('.submitButton').prop('disabled', true); 
+    $.ajax({
+        url:'submit_experience',
+        type:"post",
+        data:new FormData(this),
+        processData:false,
+        contentType:false,
+        cache:false,
+        async:false,
+        success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              toastr["success"](data.msg, 'Success!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#staticBackdrop').modal('hide');
+            }else{
+                $('.submitButton').prop('disabled', false);
+                toastr["error"](data.msg, 'Error!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        },
+        error: function (jqXHR, exception) {
+            $('.submitButton').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+  $("body").on('click', '.editOrganization', function(e){
+    var ele = $(this); $('.editOrganization').prop('disabled', true);
+    var id = ele.attr("data-id");    var db = ele.attr("data-db");
+    $.ajax({
+        url:'get',
+        type:"post",
+        data:{
+            id: id,
+            db: db,
+        },
+        success: function(data){
+        var data = jQuery.parseJSON(data);
+        if(data.status == 1){
+            html = `<form class="profile" id="submitJob" role="form" novalidate="novalidate">
+            <input type="text" value="add" name="operation" hidden>
+            <input type="text" value="${id}" name="id" hidden>
+            <div class="col-md-12"><label class="labels">Organization Name</label><input type="text" class="form-control" name="organization_name" placeholder="experience" value="${data.data.organization_name}"></div> <br>
+            <div class="col-md-12"><label class="labels">Organization Location</label><input type="text" class="form-control" name="organization_location" placeholder="experience" value="${data.data.organization_location}"></div> <br>
+            <div class="col-md-12"><label class="labels">Designation Details</label><input type="text" class="form-control" name="organization_designation" placeholder="additional details" value="${data.data.organization_designation}"></div><br>
+            <div class="row">
+              <div class="col-md-6"><label class="labels">From Date</label><input type="text" class="form-control" name="organization_from_date" placeholder="from date" value="${data.data.organization_from_date}"></div>
+              <div class="col-md-6"><label class="labels">To Date</label><input type="text" class="form-control" name="organization_to_date" placeholder="to date" value="${data.data.organization_to_date}"></div>
+            </div>
+            <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitButton" type="submit">Save Experience Details</button></div>
+          </form>`;
+          $('.modal-title').html(`Edit ${data.data.organization_name} Details`);
+          $('.modal-body').html(html);
+          $('.modal-footer').hide();
+          $('#staticBackdrop').modal('show');
+          $('.editOrganization').prop('disabled', false);
+        }else{
+            $('.editOrganization').prop('disabled', false);
+            Swal.fire(
+                'Opps-Error!',
+                data.msg,
+                'error'
+            );
+        }
+        },
+        error: function (jqXHR, exception) {
+            $('.editOrganization').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+  $("body").on('submit', '#submitSkill', function(e){
+    e.preventDefault();
+    $('.submitButton').prop('disabled', true); 
+    $.ajax({
+        url:'submit_skill',
+        type:"post",
+        data:new FormData(this),
+        processData:false,
+        contentType:false,
+        cache:false,
+        async:false,
+        success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              toastr["success"](data.msg, 'Success!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#staticBackdrop').modal('hide');
+            }else{
+                $('.submitButton').prop('disabled', false);
+                toastr["error"](data.msg, 'Error!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        },
+        error: function (jqXHR, exception) {
+            $('.submitButton').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+  $("body").on('click', '.editSkill', function(e){
+    var ele = $(this); $('.editSkill').prop('disabled', true);
+    var id = ele.attr("data-id");    var db = ele.attr("data-db");
+    $.ajax({
+        url:'get',
+        type:"post",
+        data:{
+            id: id,
+            db: db,
+        },
+        success: function(data){
+        var data = jQuery.parseJSON(data);
+        if(data.status == 1){
+            html = `<form class="profile" id="submitSkill" role="form" novalidate="novalidate">
+            <input type="text" value="add" name="operation" hidden>
+            <input type="text" value="${id}" name="id" hidden>
+            <div class="row skill">
+              <div class="col-md-6"><label class="labels">Skill Name</label><input type="text" name="skill_name" class="form-control" placeholder="sikll" value="${data.data.skill_name}"></div>
+              <div class="col-md-6">
+                <label class="form-label">Skill Percentage</label>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <span>0</span>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <span>50</span>
+                  </div>
+                  <div class="col-sm-4 text-end">
+                    <span>100</span>
+                  </div>
+                </div>
+                <input type="range" name="skill_percentage" class="form-range" min="0" max="100" step="1" id="range-slider" value="${data.data.skill_percentage}">
+                <span id="range-value"></span>
+              </div>
+            </div>
+            <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitButton" type="submit">Save Skills</button></div>
+          </form>`;
+          $('.modal-title').html(`Edit ${data.data.skill_name} Details`);
+          $('.modal-body').html(html);
+          $('.modal-footer').hide();
+          $('#staticBackdrop').modal('show');
+          $('.editSkill').prop('disabled', false);
+        }else{
+            $('.editSkill').prop('disabled', false);
+            Swal.fire(
+                'Opps-Error!',
+                data.msg,
+                'error'
+            );
+        }
+        },
+        error: function (jqXHR, exception) {
+            $('.editSkill').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+  $("body").on('submit', '#submitPassword', function(e){
+    e.preventDefault();
+    $('.submitButton').prop('disabled', true); 
+    $.ajax({
+        url:'password_update',
+        type:"post",
+        data:new FormData(this),
+        processData:false,
+        contentType:false,
+        cache:false,
+        async:false,
+        success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              toastr["success"](data.msg, 'Success!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+                $('#staticBackdrop').modal('hide');
+            }else{
+                $('.submitButton').prop('disabled', false);
+                toastr["error"](data.msg, 'Error!!')
+
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+            }
+        },
+        error: function (jqXHR, exception) {
+            $('.submitButton').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        },
+    });
+  });
+
+  $("body").on('click', '.delete', function(e){
+    var ele = $(this);
+    var id = ele.attr("data-id");    var db = ele.attr("data-db");
+    var status = ele.data("status");
+    Swal.fire({
+      title: 'Are you sure?',
+      text: (status ==  1) ? "You won't be able to revert this!" : "You are going to retrive this role!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: (status ==  1) ? 'Yes, delete it!': 'Yes, retrive it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url:'delete',
+          type:"post",
+          data:{
+            id: id,
+            db: db,
+          },
+          success: function(data){
+            var data = jQuery.parseJSON(data);
+            if(data.status == 1){
+              (status ==  1) ? ele.closest("tr").find('.delete').data("status", 0) : ele.closest("tr").find('.delete').data("status", 1);
+              html = (status ==  1) ? '<i class="fa fa-check fa-lg m-2"></i>': '<i class="fa fa-trash-o fa-lg m-2"></i>';
+              ele.closest("tr").find('.delete').html(html);
+              Swal.fire(
+                'Deleted!',
+                data.msg,
+                'success'
+              );
+            }else{
+              Swal.fire(
+                'Opps-Error!',
+                data.msg,
+                'error'
+              );
+            }
+          },
+          error: function (jqXHR, exception) {
+            $('.setup').prop('disabled', false);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            toastr["error"](msg, e)
+
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+          },
+        });
+      }
+    })
+  });
+  
 });
-

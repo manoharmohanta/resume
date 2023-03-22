@@ -48,6 +48,18 @@ class Setup extends CI_Controller {
 			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
 			$response['status'] = 0;
 		}
+		if (!$this->db->table_exists('education')){
+			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
+			$response['status'] = 0;
+		}
+		if (!$this->db->table_exists('organization')){
+			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
+			$response['status'] = 0;
+		}
+		if (!$this->db->table_exists('skill')){
+			$response['msg'][]= 'Your Website is not updated to generate resumegenie';
+			$response['status'] = 0;
+		}
 		if(empty($response['msg'])){
 			$response['msg'] = 'Your Website is updated to latest version 1.0';
 			$response['status'] = 1;
@@ -80,6 +92,15 @@ class Setup extends CI_Controller {
 		}
 		if (!$this->db->table_exists('blog')){
 			$this->blog();
+		}
+		if (!$this->db->table_exists('education')){
+			$this->education();
+		}
+		if (!$this->db->table_exists('organization')){
+			$this->organization();
+		}
+		if (!$this->db->table_exists('skill')){
+			$this->skill();
 		}
 
 		$response = array(

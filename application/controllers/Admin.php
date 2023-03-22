@@ -423,9 +423,25 @@ class Admin extends CI_Controller {
 			$this->db->where('status', 1);
 			$this->db->limit(1);
 			$roles = $this->db->get('user')->row_array();
+
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->where('status', 1);
+			$education = $this->db->get('education')->result_array();
+
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->where('status', 1);
+			$skill = $this->db->get('skill')->result_array();
+
+			$this->db->where('user_id', $this->session->userdata('user_id'));
+			$this->db->where('status', 1);
+			$organization = $this->db->get('organization')->result_array();
+
 			$details = array(
 				'page_name' => 'My Profile',
 				'db_results' => $roles,
+				'education' => $education,
+				'skill' => $skill,
+				'organization' => $organization,
 			);
 			$this->load->view('include/a-header');
 			$this->load->view('admin/profile',$details);
@@ -537,8 +553,7 @@ class Admin extends CI_Controller {
 			$degree_name = $this->security->xss_clean($this->input->post('degree_name'));
 			$university_from_date = $this->security->xss_clean($this->input->post('university_from_date'));
 			$university_to_date = $this->security->xss_clean($this->input->post('university_to_date'));
-
-			// $skill_name = $this->security->xss_clean($this->input->post('skill_name'));
+			$id = $this->security->xss_clean($this->input->post('id'));
 			// $skill_percentage = $this->security->xss_clean($this->input->post('skill_percentage'));
 			// $organization_name = $this->security->xss_clean($this->input->post('organization_name'));
 			// $organization_location = $this->security->xss_clean($this->input->post('organization_location'));
@@ -551,29 +566,44 @@ class Admin extends CI_Controller {
 			if($operation == 'add'){
 				$user_id = $this->session->userdata('user_id');
 				if(!empty($user_id)){
-					if(!empty($first_name)){
-						$data = array(
-							'university_name' => strtolower($university_name),
-							'university_location' => strtolower($university_location),
-							'university_from_date' => strtolower($university_from_date),
-							'university_to_date' => strtolower($university_to_date),
-							// 'user_address_1' => strtolower($user_address_1),
-							// 'user_address_2' => strtolower($user_address_2),
-							// 'user_state' => strtolower($user_state),
-							// 'user_city' => strtolower($user_city),
-							'university_created' => date('Y-m-d'),
-						);
-						$image_details = $this->upload('profile-image');
-						if($image_details['status'] == 1){
-							$data['user_image'] = $image_details['upload_data']['raw_name'].$image_details['upload_data']['file_ext'];
+					if(!empty($university_name)){
+						if(!empty($id)){
+							$data = array(
+								'university_name' => strtolower($university_name),
+								'university_location' => strtolower($university_location),
+								'education_from_date' => strtolower($university_from_date),
+								'education_to_date' => strtolower($university_to_date),
+								'user_id' => ($user_id),
+								'degree_name' => strtolower($degree_name),
+								// 'user_state' => strtolower($user_state),
+								// 'user_city' => strtolower($user_city),
+								'education_created' => date('Y-m-d'),
+							);
+							$this->db->where('education_id', $id);
+							$this->db->update('education',$data);
+							$result= array(
+								'msg'=> 'Education details Updated Successfully',
+								'status' => 1,
+							);
 						}else{
+							$data = array(
+								'university_name' => strtolower($university_name),
+								'university_location' => strtolower($university_location),
+								'education_from_date' => strtolower($university_from_date),
+								'education_to_date' => strtolower($university_to_date),
+								'user_id' => ($user_id),
+								'degree_name' => strtolower($degree_name),
+								// 'user_state' => strtolower($user_state),
+								// 'user_city' => strtolower($user_city),
+								'education_created' => date('Y-m-d'),
+							);
+							$this->db->insert('education',$data);
+							$result= array(
+								'msg'=> 'Education details Added Successfully',
+								'status' => 1,
+							);
 						}
-						$this->db->where('user_id', $user_id);
-						$this->db->update('user',$data);
-						$result= array(
-							'msg'=> 'User details Updated Successfully',
-							'status' => 1,
-						);
+						
 					}else{
 						$result= array(
 							'msg'=> 'Enter Your Details',
@@ -626,7 +656,7 @@ class Admin extends CI_Controller {
 		if($this->islogin()){
 			$skill_name = $this->security->xss_clean($this->input->post('skill_name'));
 			$skill_percentage = $this->security->xss_clean($this->input->post('skill_percentage'));
-			// $organization_name = $this->security->xss_clean($this->input->post('organization_name'));
+			$id = $this->security->xss_clean($this->input->post('id'));
 			// $organization_location = $this->security->xss_clean($this->input->post('organization_location'));
 			// $organization_designation = $this->security->xss_clean($this->input->post('organization_designation'));
 			// $organization_from_date = $this->security->xss_clean($this->input->post('organization_from_date'));
@@ -637,25 +667,44 @@ class Admin extends CI_Controller {
 			if($operation == 'add'){
 				$user_id = $this->session->userdata('user_id');
 				if(!empty($user_id)){
-					if(!empty($first_name)){
-						$data = array(
-							'skill_name' => strtolower($skill_name),
-							'skill_percentage' => strtolower($skill_percentage),
-							// 'user_phone' => strtolower($user_phone),
-							// 'user_gender' => strtolower($user_gender),
-							// 'user_address_1' => strtolower($user_address_1),
-							// 'user_address_2' => strtolower($user_address_2),
-							// 'user_state' => strtolower($user_state),
-							// 'user_city' => strtolower($user_city),
-							'skill_created' => date('Y-m-d'),
-						);
-						
-						$this->db->where('user_id', $user_id);
-						$this->db->update('user',$data);
-						$result= array(
-							'msg'=> 'User details Updated Successfully',
-							'status' => 1,
-						);
+					if(!empty($skill_name)){
+						if(!empty($id)){
+							$data = array(
+								'skill_name' => strtolower($skill_name),
+								'skill_percentage' => strtolower($skill_percentage),
+								'user_id' => strtolower($user_id),
+								// 'user_gender' => strtolower($user_gender),
+								// 'user_address_1' => strtolower($user_address_1),
+								// 'user_address_2' => strtolower($user_address_2),
+								// 'user_state' => strtolower($user_state),
+								// 'user_city' => strtolower($user_city),
+								'skill_created' => date('Y-m-d'),
+							);
+							$this->db->where('skill_id', $id);
+							$this->db->update('skill',$data);
+							$result= array(
+								'msg'=> 'Skill details Updated Successfully',
+								'status' => 1,
+							);
+						}else{
+							$data = array(
+								'skill_name' => strtolower($skill_name),
+								'skill_percentage' => strtolower($skill_percentage),
+								'user_id' => strtolower($user_id),
+								// 'user_gender' => strtolower($user_gender),
+								// 'user_address_1' => strtolower($user_address_1),
+								// 'user_address_2' => strtolower($user_address_2),
+								// 'user_state' => strtolower($user_state),
+								// 'user_city' => strtolower($user_city),
+								'skill_created' => date('Y-m-d'),
+							);
+							
+							$this->db->insert('skill',$data);
+							$result= array(
+								'msg'=> 'Skill details Added Successfully',
+								'status' => 1,
+							);
+						}
 					}else{
 						$result= array(
 							'msg'=> 'Enter Your Details',
@@ -704,7 +753,6 @@ class Admin extends CI_Controller {
 			echo json_encode($result); exit();
 		}
 	}
-
 	public function submit_experience(){
 		if($this->islogin()){
 			$organization_name = $this->security->xss_clean($this->input->post('organization_name'));
@@ -713,29 +761,48 @@ class Admin extends CI_Controller {
 			$organization_from_date = $this->security->xss_clean($this->input->post('organization_from_date'));
 			$organization_to_date = $this->security->xss_clean($this->input->post('organization_to_date'));
 			$operation = $this->security->xss_clean($this->input->post('operation'));
+			$id = $this->security->xss_clean($this->input->post('id'));
 
 			if($operation == 'add'){
 				$user_id = $this->session->userdata('user_id');
 				if(!empty($user_id)){
-					if(!empty($first_name)){
-						$data = array(
-							'organization_name' => strtolower($organization_name),
-							'organization_location' => strtolower($organization_location),
-							'organization_designation' => strtolower($organization_designation),
-							'organization_from_date' => strtolower($organization_from_date),
-							'organization_to_date' => strtolower($organization_to_date),
-							// 'user_address_2' => strtolower($user_address_2),
-							// 'user_state' => strtolower($user_state),
-							// 'user_city' => strtolower($user_city),
-							'organization_created' => date('Y-m-d'),
-						);
-						
-						$this->db->where('user_id', $user_id);
-						$this->db->update('user',$data);
-						$result= array(
-							'msg'=> 'Experience details Updated Successfully',
-							'status' => 1,
-						);
+					if(!empty($organization_name)){
+						if(!empty($id)){
+							$data = array(
+								'organization_name' => strtolower($organization_name),
+								'organization_location' => strtolower($organization_location),
+								'organization_designation' => strtolower($organization_designation),
+								'organization_from_date' => strtolower($organization_from_date),
+								'organization_to_date' => strtolower($organization_to_date),
+								// 'user_state' => strtolower($user_state),
+								// 'user_city' => strtolower($user_city),
+								'organization_created' => date('Y-m-d'),
+							);
+							$this->db->where('organization_id',$id);
+							$this->db->update('organization',$data);
+							$result= array(
+								'msg'=> 'Experience details Updated Successfully',
+								'status' => 1,
+							);
+						}else{
+							$data = array(
+								'organization_name' => strtolower($organization_name),
+								'organization_location' => strtolower($organization_location),
+								'organization_designation' => strtolower($organization_designation),
+								'organization_from_date' => strtolower($organization_from_date),
+								'organization_to_date' => strtolower($organization_to_date),
+								'user_id' => ($user_id),
+								// 'user_state' => strtolower($user_state),
+								// 'user_city' => strtolower($user_city),
+								'organization_created' => date('Y-m-d'),
+							);
+							
+							$this->db->insert('organization',$data);
+							$result= array(
+								'msg'=> 'Experience details Updated Successfully',
+								'status' => 1,
+							);
+						}
 					}else{
 						$result= array(
 							'msg'=> 'Enter Your Details',
@@ -779,6 +846,89 @@ class Admin extends CI_Controller {
 				$result = array(
 					'msg' => 'Please provide correct opertion code',
 					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
+	public function password_update(){
+		if($this->islogin()){
+			$password = $this->security->xss_clean($this->input->post('password'));
+			$c_password = $this->security->xss_clean($this->input->post('c_password'));
+			if($password == $c_password){
+				$this->db->where('user_id', $this->session->userdata('user_id'));
+				$val = $this->db->get('user')->row_array();
+				if($val['user_password'] == md5($password)){
+					$result = array(
+						'msg' => 'Old Password cannot be used again',
+						'status' => 0,
+					);
+				}else{
+					$this->db->set('user_password',md5($password));
+					$this->db->where('user_id', $this->session->userdata('user_id'));
+					$this->db->update('user');
+					$result = array(
+						'msg' => 'Password Updated Successfully',
+						'status' => 1,
+					);
+				}
+			}else{
+				$result = array(
+					'msg' => 'New Password and Confirm New Password is not same',
+					'status' => 0,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
+
+	public function delete(){
+		if($this->islogin()){
+			$id = $this->security->xss_clean($this->input->post('id'));
+			$db = $this->security->xss_clean($this->input->post('db'));
+
+			$this->db->where($db.'_id', $id);
+			$val = $this->db->get($db)->row_array();
+
+			if($val['status'] == 0){
+				$this->db->set('status',1);
+				$this->db->where($db.'_id', $id);
+				$this->db->update($db);
+				$result = array(
+					'msg' => ucwords($db).' Details Retrived Successfully',
+					'status' => 1,
+				);
+			}else{
+				$this->db->set('status',0);
+				$this->db->where($db.'_id', $id);
+				$this->db->update($db);
+				$result = array(
+					'msg' => ucwords($db).' Details Removed Successfully',
+					'status' => 1,
+				);
+			}
+			echo json_encode($result); exit();
+		}
+	}
+	public function get(){
+		if($this->islogin()){
+			$id = $this->security->xss_clean($this->input->post('id'));
+			$db = $this->security->xss_clean($this->input->post('db'));
+
+			$this->db->where($db.'_id', $id);
+			$this->db->limit(1);
+			$val = $this->db->get($db)->row_array();
+
+			if(sizeof($val) > 0){
+				$result = array(
+					'data' => $val,
+					'msg' => ucwords($db).' Details Retrived Successfully',
+					'status' => 1,
+				);
+			}else{
+				$result = array(
+					'msg' => ucwords($db).' Details are Invalid',
+					'status' => 1,
 				);
 			}
 			echo json_encode($result); exit();

@@ -102,6 +102,7 @@
                                   <!-- <span class="border px-3 p-1 addQualification"><i class="fa fa-plus"></i>&nbsp;Education</span> -->
                                 </div><br>
                                 <form class="profile" id="submitEducation" role="form" novalidate="novalidate">
+                                  <input type="text" value="add" name="operation" hidden>
                                   <div class="col-md-12"><label class="labels">University Name</label><input type="text" class="form-control" name="university_name" placeholder="university name" value=""></div> <br>
                                   <div class="col-md-12"><label class="labels">University Location</label><input type="text" class="form-control" name="university_location" placeholder="university location" value=""></div> <br>
                                   <div class="col-md-12"><label class="labels">Degree Name</label><input type="text" class="form-control" name="degree_name" placeholder="degree name" value=""></div><br>
@@ -126,14 +127,19 @@
                               </tr>
                             </thead>
                             <tbody>
+                              <?php foreach($education as $key=>$val){ ?>
                               <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td><button class="btn btn-sm btn-primary"><span class="badge bg-primary">Edit</span></button><button class="btn btn-sm btn-danger ms-2"><span class="badge bg-danger">Delete</span></button></td>
+                                <th scope="row"><?= $key+1 ?></th>
+                                <td><?= ucwords($val['university_name']) ?></td>
+                                <td><?= ucwords($val['university_location']) ?></td>
+                                <td><?= ucwords($val['degree_name']) ?></td>
+                                <td><?= $val['education_from_date'] ?> - <?= $val['education_to_date'] ?></td>
+                                <td class="text-center">
+                                  <button class="btn btn-sm btn-primary m-1 editEducation" data-id="<?= $val['education_id'] ?>" data-db="education"><span class="badge bg-primary">Edit</span></button><br>
+                                  <a href="javascript: void(0);" data-id="<?= $val['education_id'] ?>" data-db="education" data-status="<?= $val['status'] ?>" class="text-danger delete"><?= ($val['status'] == 1) ? '<i class="fa fa-trash-o fa-lg m-2"></i>' : '<i class="fa fa-check fa-lg m-2"></i>' ?></a>
+                                </td>
                               </tr>
+                              <?php } ?>
                             </tbody>
                           </table>
                         </div>
@@ -145,6 +151,7 @@
                           <div class="p-3 job">
                               <div class="d-flex justify-content-between align-items-center"><span>Edit Experience</span></div><br>
                               <form class="profile" id="submitJob" role="form" novalidate="novalidate">
+                                <input type="text" value="add" name="operation" hidden>
                                 <div class="col-md-12"><label class="labels">Organization Name</label><input type="text" class="form-control" name="organization_name" placeholder="experience" value=""></div> <br>
                                 <div class="col-md-12"><label class="labels">Organization Location</label><input type="text" class="form-control" name="organization_location" placeholder="experience" value=""></div> <br>
                                 <div class="col-md-12"><label class="labels">Designation Details</label><input type="text" class="form-control" name="organization_designation" placeholder="additional details" value=""></div><br>
@@ -169,14 +176,19 @@
                               </tr>
                             </thead>
                             <tbody>
+                              <?php foreach($organization as $key=>$val){ ?>
                               <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td><button class="btn btn-sm btn-primary"><span class="badge bg-primary">Edit</span></button><button class="btn btn-sm btn-danger ms-2"><span class="badge bg-danger">Delete</span></button></td>
+                                <th scope="row"><?= $key+1 ?></th>
+                                <td><?= ucwords($val['organization_name']) ?></td>
+                                <td><?= ucwords($val['organization_location']) ?></td>
+                                <td><?= ucwords($val['organization_designation']) ?></td>
+                                <td><?= $val['organization_from_date'] ?> - <?= $val['organization_to_date'] ?></td>
+                                <td class="text-center">
+                                  <button class="btn btn-sm btn-primary m-1 editOrganization" data-id="<?= $val['organization_id'] ?>" data-db="organization"><span class="badge bg-primary">Edit</span></button><br>
+                                  <a href="javascript: void(0);" data-id="<?= $val['organization_id'] ?>" data-db="organization" data-status="<?= $val['status'] ?>" class="text-danger delete"><?= ($val['status'] == 1) ? '<i class="fa fa-trash-o fa-lg m-2"></i>' : '<i class="fa fa-check fa-lg m-2"></i>' ?></a>
+                                </td>
                               </tr>
+                              <?php } ?>
                             </tbody>
                           </table>
                         </div>
@@ -188,6 +200,7 @@
                           <div class="p-3">
                               <div class="d-flex justify-content-between align-items-center experience"><span>Edit Skils</span></div><br>
                               <form class="profile" id="submitSkill" role="form" novalidate="novalidate">
+                                <input type="text" value="add" name="operation" hidden>
                                 <div class="row skill">
                                   <div class="col-md-6"><label class="labels">Skill Name</label><input type="text" name="skill_name" class="form-control" placeholder="sikll" value=""></div>
                                   <div class="col-md-6">
@@ -223,12 +236,21 @@
                               </tr>
                             </thead>
                             <tbody>
+                            <?php foreach($skill as $key=>$val){ ?>
                               <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td><button class="btn btn-sm btn-primary editSkill"><span class="badge bg-primary">Edit</span></button><button class="btn btn-sm btn-danger ms-2"><span class="badge bg-danger">Delete</span></button></td>
+                                <th scope="row"><?= $key+1 ?></th>
+                                <td><?= ucwords($val['skill_name']) ?></td>
+                                <td>
+                                  <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: <?= ucwords($val['skill_percentage']) ?>%" aria-valuenow="<?= ucwords($val['skill_percentage']) ?>" aria-valuemin="0" aria-valuemax="100"><?= ucwords($val['skill_percentage']) ?>%</div>
+                                  </div>
+                                </td>
+                                <td class="text-center">
+                                  <button class="btn btn-sm btn-primary m-1 editSkill" data-id="<?= $val['skill_id'] ?>" data-db="skill"><span class="badge bg-primary">Edit</span></button><br>
+                                  <a href="javascript: void(0);" data-id="<?= $val['skill_id'] ?>" data-db="skill" data-status="<?= $val['status'] ?>" class="text-danger delete"><?= ($val['status'] == 1) ? '<i class="fa fa-trash-o fa-lg m-2"></i>' : '<i class="fa fa-check fa-lg m-2"></i>' ?></a>
+                                </td>
                               </tr>
+                              <?php } ?>
                             </tbody>
                           </table>
                         </div>
@@ -238,9 +260,10 @@
                       <div class="p-3">  
                         <div class="d-flex justify-content-center">
                           <form class="profile" id="submitPassword" role="form" novalidate="novalidate">
+                            <input type="text" value="add" name="operation" hidden>
                             <div class="col-md-12"><label class="labels">New Password</label><input type="password" class="form-control" name="password" placeholder="********" value=""></div> <br>
                             <div class="col-md-12"><label class="labels">Confirm New Password</label><input type="password" class="form-control" name="c_password" placeholder="********" value=""></div> <br>
-                            <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitButton" type="submit">Save Skills</button></div>
+                            <div class="mt-3 text-center"><button class="waves-effect waves-light btn btn-info submitButton" type="submit">Update Password</button></div>
                           </form>
                         </div>
                       </div>
